@@ -1,3 +1,39 @@
-h1{
-    color:blue
+$secondary: #001f3f;
+$style: #ffa436;
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+.navbar {
+  div > .navbar-brand {
+    height: 100%;
+
+    img {
+      max-height: 10vh;
+    }
+    div > button {
+      color: $style !important;
+    }
+  }
+
+  div > .navbar-nav {
+    .nav-link {
+      text-decoration: none;
+      font-size: 18pt;
+      color: $style;
+    }
+  }
 }
+.carousel {
+  .carousel-inner {
+    object-fit: contain;
+    overflow: hidden;
+    img {
+      height: 85vh;
+      object-fit: cover;
+    }
+  }
+}
+
+/* Navbar color 001F3F // 010C80
+  Navbar style EA3C12
+  Navbar brand FFA436 */

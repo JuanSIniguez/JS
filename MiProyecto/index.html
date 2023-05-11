@@ -4,13 +4,127 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BoardStyle</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
     <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@200&display=swap"
+      rel="stylesheet"
+    />
     <!-- JAVASCRIPT
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="scss/style.css" />
   </head>
   <body>
-    <script src="./main.js"></script>
+    <!-------------- NAVBAR -------------->
+
+    <nav class="navbar navbar-expand-md bg-secondary navbar-s px-2" id="navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand my-2" href="/index.html"
+          ><img src="./img/logo.png"Coffee" id="#logo" /></a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon bg-secondary"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="/index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pages/store.html">Tienda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pages/blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pages/aboutus.html" aria-current="page"
+                >Nosotros</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!----------------------- CARROUSEL ----------------------->
+
+    <div
+      id="carouselExampleAutoplaying"
+      class="carousel slide"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-inner" style="height: 100%">
+        <div class="carousel-item active">
+          <img
+            src="./img/carrousel1.webp"
+            class="d-block w-100 img-fluid"
+            alt="Cafe"
+          />
+        </div>
+        <div class="carousel-item">
+          <img
+            src="./img/carrousel2.webp"
+            class="d-block w-100 img-fluid"
+            alt="Store"
+          />
+        </div>
+        <div class="carousel-item">
+          <img
+            src="./img/carrousel3.webp"
+            class="d-block w-100 img-fluid"
+            alt="Espresso"
+          />
+        </div>
+        <div class="carousel-item">
+          <img
+            src="./img/carrousel4.webp"
+            class="d-block w-100 img-fluid"
+            alt="Cafetera"
+          />
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-------------- SCRIPTS -------------->
+    <script src="./index.js"></script>
+    <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   </body>
 </html>
