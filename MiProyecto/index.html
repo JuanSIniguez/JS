@@ -47,7 +47,10 @@
           <span class="navbar-toggler-icon bg-secondary"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div
+          class="collapse navbar-collapse fw-semibold"
+          id="navbarSupportedContent"
+        >
           <ul class="navbar-nav px-5">
             <li class="nav-item">
               <a class="nav-link active" href="#">Inicio</a>
@@ -56,7 +59,7 @@
               <button
                 id="btnGroupDrop1"
                 type="button"
-                class="btn btn-secondary dropdown-toggle text-start"
+                class="btn btn-secondary dropdown-toggle text-sm-start fw-semibold"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
@@ -93,7 +96,7 @@
               class="btn btn-outline-success input-group-text bg-transparent text-style px-3"
               type="submit"
             >
-              <i class="bi bi-search"></i>
+              <i class="bi bi-search fs-5"></i>
             </button>
           </div>
         </form>
@@ -103,17 +106,15 @@
               class="btn btn-outline-success input-group-text bg-transparent text-style px-3"
               type="submit"
             >
-              <i class="bi bi-person-fill"></i>
+              <i class="bi bi-person-fill fs-4"></i>
             </button>
             <button
               class="btn btn-outline-success input-group-text bg-transparent text-style px-3"
             >
-              <i class="bi bi-cart3"></i>
+              <i class="bi bi-cart3 fs-5"></i>
             </button>
           </div>
         </form>
-        <!--           </div>
-        </nav> -->
         <!-- CIERRA NAVBAR COMPELTA -->
       </div>
     </nav>
@@ -175,8 +176,8 @@
     </div>
 
     <!---------------------------------------------- FORMAS DE PAGO ---------------------------------------------->
-    <div class="container-fluid py-4 bg-secondary text-light" id="compra">
-      <div class="row align-content-between p-5 mx-lg-5">
+    <div class="container-fluid py-4 bg-secondary-grey text-light" id="compra">
+      <div class="row align-content-between py-3 mx-lg-5">
         <div class="col-lg-4 col-md-4 col-sm-12">
           <div class="py-1 row">
             <i class="bi bi-truck fs-1 col-auto"></i>
@@ -207,8 +208,81 @@
       </div>
     </div>
     <!------------------------------------- Ofertas ------------------------------------->
-    <div class="container-fluid text-center py-3 h1 bg-secondary text-white">
-      Destacados
+    <div class="container-fluid py-3 bg-secondary">
+      <div class="container text-white text-center">
+        <h2 class="h2">Destacados</h2>
+      </div>
+      <div class="container">
+        <div class="row mx-lg-5 py-3">
+          <div class="flip-card col-lg-3 col-md-6 col-sm-12 my-3">
+            <div class="card flip-card-inner border-style">
+              <img
+                class="card-img-top img-size flip-card-front"
+                src="./img/productos/360w_NEGRO.jpg"
+                alt="blueberry"
+              />
+              <div class="card-body flip-card-back">
+                <p class="card-text text-center fs-5 text-white">
+                  Descripción ampliada artículo
+                </p>
+              </div>
+            </div>
+            <div class="card bg-transparent" style="width: 18rem">
+              <div class="card-footer text-white">
+                <form class="card-footer text-white d-flex border-0">
+                  <div class="card-text">
+                  Codigo + Descrpicion + Precio</div>
+                  <button type="button" class="btn  
+                  btn-secondary
+                  border-success
+                  text-success
+                  justify-content-end
+                  "><i class="bi bi-cart-plus"></i></button>
+                  <!--                   <button
+                    type="button"
+                    class="btn btn-outline-secondary-grey text-primary border-primary"
+                  >
+                    <i class="bi bi-cart-plus"></i> -->
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!------------------------------ FOOTER ------------------------------>
+    <div class="container-fluid bg-secondary-grey" id="footer">
+      <div class="row bg-secondary-grey py-3">
+        <div class="col-lg-4 col-sm-12 text-start py-3">
+          <a href="index.html" class="logo" alt="Coffee Break" id="logopie">
+            <img class="img-fluid" src="./img/logo.png"
+          /></a>
+        </div>
+        <div
+          class="col-lg-6 col-sm-6 text-style text-decoration-none py-3 text-white text-start ps-lg-5"
+        >
+          <h2 class="h2">Contacto</h2>
+          <ul class="">
+            <li>Dirección: Av Dellepiane Norte 4781</li>
+            <li>info@BoardStyle</li>
+            <li>Teléfono: 11-2775-0955</li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-sm-6">
+          <div class="mt-5 ps-2 pb-3 py-3 fs-3 text-white" id="redes">
+            <a class="px-1" href="#"
+              ><i class="bi bi-whatsapp text-white"></i
+            ></a>
+            <a class="px-1" href="#"
+              ><i class="bi bi-facebook text-white"></i
+            ></a>
+            <a class="px-1" href="#"
+              ><i class="bi bi-instagram text-white"></i
+            ></a>
+          </div>
+        </div>
+      </div>
     </div>
     <!------------------------------------- SCRIPTS ------------------------------------->
     <script src="./index.js"></script>
