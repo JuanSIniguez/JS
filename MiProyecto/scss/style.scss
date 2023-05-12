@@ -1,8 +1,18 @@
 $secondary: #001f3f;
+$secondary-grey: #0b243d;
 $style: #ffa436;
+$a: #ffa436;
+$theme-colors: (
+  "style": $style,
+  "secondary": $secondary,
+  "secondary-grey": $secondary-grey,
+);
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
+* {
+  background-color: $secondary;
+}
 .navbar {
   div > .navbar-brand {
     height: 100%;
@@ -14,12 +24,16 @@ $style: #ffa436;
       color: $style !important;
     }
   }
+  div {
+    .navbar-nav {
+      .nav-link,
+      .btn-group > button {
+        text-decoration: none;
+        font-size: 16pt;
+        color: $style !important;
 
-  div > .navbar-nav {
-    .nav-link {
-      text-decoration: none;
-      font-size: 18pt;
-      color: $style;
+        padding: 0 1rem;
+      }
     }
   }
 }
@@ -29,6 +43,7 @@ $style: #ffa436;
     overflow: hidden;
     img {
       height: 85vh;
+
       object-fit: cover;
     }
   }
