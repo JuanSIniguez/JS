@@ -1,562 +1,175 @@
-// LET      permite reasignar valores a una variable mientras que CONST no lo permite
-// CONST    no puede ser inicializada vacia
-
-/*
-
-    ==     igualdad
-    >      mayor que
-    <      menor que
-    !=     distinto
-    >=     mayor o igual
-    <=     menor o igual
-    ===    estrictamente igual (Tipo de valor)
-    !==    estrictamente diferente (Tipo de valor)
-    &&     AND
-    ||     OR
-
-    */
-
-// PROMPT
-
-// const nombre = prompt("Ingrese su nombre")
-
-// IF   ELSE    ELSE IF
-
-/* 
-
-    if(condicion){
-        //respuesta
-    }else // else if{
-        //otra respuesta
-
-    -----
-
-    let precio = prompt("Ingrese el precio de la hamburguesa")
-
-    if (precio > 1000){
-        console.log("Bastante cara")
-    } else if( precio > 500){
-        console.log("yyyy... puede ser")
-    } else{
-        console.log("Buena, bonita, barata")
-    } 
-
-    */
-
-//WHILE
-
-/* 
-
-    while(condicion){
-        //se genere determinada funcionalidad
-    } 
-
-    while (entrada != "ESC" && entrada != "esc"){
-        texto += entrada + " "
-        entrada = prompt("Ingrese texto o ESC para interrumpir")
-    }
-
-    */
-
-//DO WHILE
-
-/* 
-
-    do {
-        console.log("ciclo")
-    }while (condicion) 
-
-    ---
-
-    let y = 40;
-    do {
-    console.log("el valor de la variable es: $" + y);
-    y++;
-    } while (y <= 50);
-
-    */
-
-//FOR
-
-/*
-
-    for (desde ; hasta ; actualizacion ){
-        Realiza alguna funcion
-    }
-
-    for (let i = 0; i <= 10; i++){
-        alert(`El valor de la variable es: ${i}`) 
-    } 
-
-    */
-
-// SWITCH
-
-/* 
-    let cena = prompt("Que se te antoja")
-    switch (cena){
-        case "hamburguesa":
-            console.log(`Pedido: ${cena}, valor $1500`)
-            break
-        case "pizza":
-            console.log(`Pedido: ${cena}, valor $1000`)
-            break
-        case "lomito":
-            console.log(`Pedido: ${cena}, valor $2000`)
-            break
-        default:
-            console.log("Te ahorraste unos pesos de la cena")
-            break
-    } 
-
-    */
-
-// FUNCTION DECLARATION
-
-/*
-    function mostrarMensaje() {
-    console.log("saludos");
-    }
-    
-    mostrarMensaje(); 
-    
-    */
-/*
-function calculadora(primerNumero, segundoNumero, operacion) {
-  switch (operacion) {
-    case "+":
-      return primerNumero + segundoNumero;
-      break;
-    case "-":
-      return primerNumero - segundoNumero;
-      break;
-    case "*":
-      return primerNumero * segundoNumero;
-      break;
-    case "/":
-      return primerNumero / segundoNumero;
-      break;
-    default:
-      return 0;
-      break;
+document.addEventListener('DOMContentLoaded', e => { fetchData() });
+class articulo  {
+  constructor(codigo, nombre, descripcion, categoria, familia, marca, stock, precio, oferta){
+    this.sku = categoria.toUpperCase().substring(0,2)+ codigo.trim() + familia.toUpperCase().substring(0,1)
+    this.codigo = codigo
+    this.nombre = nombre
+    this.descripcion = descripcion
+    this.categoria = categoria
+    this.familia = familia
+    this.marca = marca
+    this.stock = stock
+    this.precio = precio
+    this.oferta = oferta
+    this.img = categoria.toUpperCase().substring(0,2)+ codigo.trim() + familia.toUpperCase().substring(0,1) +".webp"
   }
 }
 
-let entrada = prompt("Desea realizar un calculo? Si / No");
+let productos = []
+//PUSHPRODUCTOS
 
-while (entrada != "NO") {
-  let numero1 = Number(prompt("ingrese un numero"));
-  let numero2 = Number(prompt("ingrese otro numero"));
-  let calculo = prompt("Ingresa alguna operación: + - * /");
-  let total;
-  console.log(calculadora(numero1, numero2, calculo));
-  entrada = prompt("Desea realizar un calculo? Si / No");
-}
-*/
-
-
-/*Object literal
-    const producto = {
-    //key / clave : value / valor
-    nombre: "Monitor de 24 Pulgadas",
-    precio: 1500,
-    disponible: true,
-    };
-    console.log(producto.nombre);
-    console.log(producto.precio);
-
-    producto.disponible = false;
-    producto.nombre = "teclado Genius";
-
-    console.log(producto["disponible"]);
-    console.log(producto.nombre);
-
-    // Agregar propiedades a un objeto
-    producto.imagen = "imagen.jpg";
-    console.log(producto);
-
-    //Eliminar propiedades de un objeto
-    //delete producto.nombre;
-    //console.log(producto);
-
-*/
-
-/* Destructuring / desestructuracion
-
-    const nombreProducto = producto.nombre;
-    console.log(nombreProducto);
+  productos.push(new articulo("0001", "TABLA DE SNOWBOARD LIB TECH TRS WIDE FREESTYLE ALL MOUNTAIN",`CARACTERÍSTICAS 
+  • Forma: Twin  
+  • Terreno: All Mountain. 
+  • Ancho: Wide. 
+  • Flex: 6/10 
+  • Nivel: Intermedio/Avanzado 
+  • Curva: Camber`
+  ,"Snowboard","Board","LIBTECH",5,95000,0))
+  productos.push(new articulo("0002", "TABLA DE SNOWBOARD LIB TECH DYNAMISS ALL MOUNTAIN DIRECTIONAL",`CARACTERÍSTICAS: 
+  • Forma: Direccional
+  • Terreno: All Mountain.
+  • Ancho: Regular.
+  • Flex: 5/10
+  • Nivel: Intermedio/Avanzado
+  • Curva: Camber`
+  ,"Snowboard","Board","LIBTECH",5,95000,0))
+  productos.push(new articulo("0003", "TABLA DE SNOWBOARD LIB TECH DOUBLE DIP FREESTYLE TWIN DIRECTIONAL",`CARACTERÍSTICAS
 
 
-    const { nombre, precio, disponible } = producto;
-    console.log(nombre);
-    console.log(precio);
-    console.log(disponible);
+  • Forma: Twin Direccional
+  • Terreno: Freestyle.
+  • Ancho: Regular.
+
+
+  • Flex: 7/10
+  • Nivel: Intermedio/Avanzado
+  • Curva: Rocker/Camber Hybrid`
+  ,"Snowboard","Board","LIBTECH",5,95000,0))
+
+  productos.push(new articulo("0004", "TABLA SNOWBOARD NITRO DEMAND GULLWING FREESTYLE GULLWING ROCKER - 142 CM", `CARACTERÍSTICAS
+
+
+  • Forma: Twin Tip.
+  • Terreno: Freestyle.
+  • Ancho: Regular.
+
+
+  • Nivel: Principiante/Intermedio.
+  • Curva: Gullwing Rocker.`
+  ,"Snowboard","Board","NITRO",5,95000,95000)
+  )
   
+  productos.push(new articulo("0001", "TABLAS DE SKI FISCHER BRILLIANT MY MT WOMENTRACK + FIJACIONES RS9 GW MUJER", `Brilliant My Mtn: ligero, cómodo y atlético. La tecnología Brilliant Carbon hace que el esquí sea especialmente ligero e increíblemente manejable. No requieren mucha energía para montar.
+  Desplace las fijaciones hacia adelante para facilitar la entrada en los giros y ahorrar esfuerzo. Construcción de pared lateral tipo sándwich para mayor estabilidad, resistencia y durabilidad Las fijaciones se mueven hacia la punta del esquí para un mejor manejo y ahorro de esfuerzo. On-Piste Rocker proporciona un mejor rendimiento todoterreno y maniobrabilidad adicional en pendientes preparadas.
+  `
+  ,"SKI","Snow","FISCHER",5,328316,0)  )
+
+  productos.push(new articulo("0002", "TABLAS DE SKI FISCHER MY PRO MT 77 TWIN POWERRAIL + FIJACIONES RS 10 GW MUJER", `All Mountain Rocker trae puntos de contacto más cerca del esquiador dándote mayor agilidad y permitiendo una mejor respuesta en condiciones variables. La posición de montaje para mujer BMP te da un esquí más eficiente en la energía. Incluye My RS 10 GW fijaciones El sistema de esquí Fischer My Pro MT 77 con My RS 10 GW fijaciones están diseñados para darte un rendimiento optimizado para principiantes o cualquier mujer que busca un esquí que la trate bien.`,"SKI","Snow","FISCHER",5,328316,0))
+
+  productos.push(new articulo("0003", "TABLAS DE SKI FISCHER RC4 THE CURVE DTX MT + FIJACIONES RC4 Z12", `Comportamiento en las curvas extremadamente dinámico, gracias a Diagotex TM y Triple Radius, es lo que hace que estos esquís con una base de la Copa del Mundo de color amarillo brillante y un acabado Race original sean tan especiales. ¡Estos esquís Free Milled Ti están diseñados para esquiadores exigentes que sacan el máximo partido a su material!`
+  ,"SKI","Snow","FISCHER",5,602675,0))
+
+  productos.push(new articulo("0004", "TABLAS DE SKI FISCHER RC4 THE CURV RACE ALLRIDE + FIJACIONES RSW 10 HOMBRE - 178", `La Fischer RC4 The Curv es la opción ideal para corredores experimentados o corredores avanzados que estén interesados ??en las sesiones de pista. El núcleo de estos esquís está hecho de madera y titanio. Si buscas esquís duraderos, el núcleo de madera te dará justo eso. Se agrega una capa de titanio para hacer que los esquís sean más rígidos, lo que resulta en una mejor transferencia de potencia y estabilidad a alta velocidad.`
+  ,"SKI","Snow","FISCHER",5, 328316, 30))
+
+  productos.push(new articulo("0001", "MOCHILA RIP CURL POSSE OVERLAND 33L UNISEX - BLACK OLIVE", `CARACTERÍSTICAS
+  • Bolsillo para gafas de sol con forro polar
+  • Correa para rollers
+  • Panel posterior de malla de aire
+  • Compartimiento para notebook
+  • Bolsillo aislado para botella de bebida
+  • Multiples bolsillos organizadores y de utilidad
+  • Correas transpirables
+  • Medidas: 49 cm alto x 32 cm ancho x 22 cm profundidad`
+  ,"URBAN","MOCHILA","RIPCURL",5, 49999, 0))
+
+  productos.push(new articulo("0002", "MOCHILA DAKINE CAMPUS L 33L UNISEX - CASCADE CAMO", `CARACTERÍSTICAS
+  • Panel trasero curvo en S y correas para los hombros
+  • Correa de esternón ajustable
+  • Funda acolchada para portátil
+  • Bolsillo organizador
+  • Bolsillo para gafas de sol con forro polar
+  • Bolsillo enfriador aislado
+  • Bolsillos laterales de malla
+  • Panel inferior acolchado
+  • Dimensiones 52 cm alto x 33 cm ancho x 20 cm`
+  ,"URBAN","MOCHILA","DAKINE",5, 48024, 0))
+
+  productos.push(new articulo("0003", "MOCHILA NEW BALANCE LOGO 20L UNISEX - BLACK", `CARACTERÍSTICAS
+  • Bolsillo para gafas de sol con forro polar
+  • Bolsillo enfriador externo aislado
+  • Compartimiento principal grande
+  • Correas transpirables
+  • Logotipo impreso
+  • Medidas 49 cm alto x 30 cm ancho x 17 cm profundidad`
+  ,"URBAN","MOCHILA","NEWBALANCE",5, 29999, 0))
+
+
+  productos.push(new articulo("0004", "MOCHILA RIP CURL EVO 24L UNISEX - NEGRO CON RAYAS AZULES", `Amplia mochila fabricada en poliéster de alta calidad. Contiene un compartimento con cremallera grande y pequeño. La parte posterior de la mochila está forrada con una malla suave y transpirable, lo que aumenta significativamente la comodidad durante el uso diario. La parte inferior de la mochila está protegida por un material especial de alta resistencia a la humedad. Las correas ajustables para los hombros garantizan un ajuste óptimo según las preferencias individuales. Hay un gran Nko reflectante en la parte delantera de la mochila. La duradera y espaciosa mochila beis New Balance es una excelente opción para la escuela, que complementa perfectamente otras necesidades escolares.`,"URBAN","MOCHILA","RIPCURL",5, 20850, 0))
+
+  productos.push(new articulo("0001", "ZAPATILLAS SAUCONY ENDORPHIN SHIFT 3 MUJER", `Amortiguación y velocidad para sentirse bien.
+  Cada carrera mejora con el Endorphin Shift 3. Apilado con amortiguación PWRRUN para mayor comodidad, utiliza suficiente espuma para ayudarlo a hacer la transición sin esfuerzo . Esta es una zapatilla que puede mantenerse sin importar el entrenamiento.
+  `,"ZAPATILLAS","RUNNING","SAUCONY",5, 59900, 0))
+  productos.push(new articulo("0002", "ZAPATILLAS SAUCONY ODYSSEUS RUN MUJER", `Cuando tu entrenamiento requiere más, Odysseus responde.
+  Diseñada para la velocidad y repleta de amortiguación, tiene todo lo que necesitas para llegar lejos. Su amortiguación VERSARUN es sensible y duradera para soportar cualquier tipo de actividad. Corre con confianza donde necesites. Inspiradas en la colección Speed, la parte superior de malla de aire diseñada tiene un ajuste similar a una media para una transpirabilidad y ligereza supremas. Su suela XT-600 creada para proteger a la zapatilla del desgaste causado por uso constante y la abrasión de los terrenos a los que puede ser expuesta.`
+  ,"ZAPATILLAS","RUNNING","SAUCONY",5, 27890, 0))
+  productos.push(new articulo("0003", "ZAPATILLAS DC SHOES CRISIS TX SS HOMBRE", `PRODUCTO HECHO EN ARGENTINA.`,"ZAPATILLAS","URBAN","DC",5, 29000, 0))
+  productos.push(new articulo("0004", "ZAPATILLAS SALOMON SUPERCROSS 3 TRAIL RUNNING HOMBRE EBONY LUNAR ROCK", `Potente agarre que hunde los dientes en el suelo y te impulsa hacia adelante y hacia arriba, un ajuste que abraza tus talones hacia abajo y los mantiene adentro, y SensiFit "integrado en la parte superior para envolver tu pie de manera cómoda y ceñida.
+  Ponte manos a la obra con Contagrip®, tracción que te conecta con el suelo y te impulsa hacia adelante con energía explosiva. te usaremos de borrador.`,"ZAPATILLAS","RUNNING","SALOMON",5, 37800, 0))
+
+
+  productos.push(new articulo("0001", "Skate completo WOODOO x ARUKI - MAR DEL PLATA", `Especificaciones:
+  • Tabla de 8.25" pulgadas construida con tecnología EPOBLOCK en maple Canadiense de 7 capas + pegamento EPOXI.
+  • Trucks de aluminio colado. Livianos y durables equipados con bujes de uretano de dureza 85A para girar fácilmente.
+  • Rulemanes: ABEC7
+  • Ruedas de 54mm de diámetro y 36mm de ancho, dureza 100A.
+  • Lija profesional estampada con gráfica en color dorado.
+  • Ilustraciones por Franco “Aruki” WOODOO .
+  • Vuelta al Cole 2023`,"SKATE","URBAN","ARUKI",5, 37990, 0))
+  productos.push(new articulo("0002", "Skate completo WOODOO INST BAUHAUS BLACK/WHITE", `Especificaciones
+  • Tabla: Construida con 7 capas de madera de arce (Maple) Liviana y duradera. Ancho: 8" Largo: 31.75".
+  • Lija: Griptape plástico grado profesional de alta calidad con excelente agarre.
+  • Ruedas: Hechas con uretano colado de calidad, dureza 95A y 53mm de diámetro, proveen un andar suave y gran durabilidad.
+  • Rulemanes: Grado ABEC3 con pistas de acero: rápidos y durables.
+  • Trucks: De aluminio colado y revestidos en pintura. Livianos y durables equipados con bujes de uretano de dureza 85A para girar fácilmente.`,"SKATE","URBAN","WOODOO",5, 37990, 0))
+  productos.push(new articulo("0003", "Skate completo WOODOO SANDRO MORAL PACK 777", `Especificaciones:
+  • Tabla de 8.25" pulgadas construida con tecnología EPOBLOCK en maple Canadiense de 7 capas + pegamento EPOXI.
+  • Trucks de aluminio colado. Livianos y durables equipados con bujes de uretano de dureza 85A para girar fácilmente.
+  • Rulemanes: ABEC7
+  • Ruedas de 54mm de diámetro y 36mm de ancho, dureza 100A.
+  • Lija profesional estampada con gráfica en color dorado.
+  • Sandro Moral 777 Pack.`,"SKATE","URBAN","WOODOO",5, 37990, 0))
+  productos.push(new articulo("0004", "Skate completo WOODOO INST. MULTIPLIED 8'' - GREEN", `Especificaciones:
+  • Tabla: Construida con 7 capas de madera de arce (Maple) Liviana y duradera. Ancho: 8" Largo: 31.75".
+  • Lija: Griptape plástico grado profesional de alta calidad con excelente agarre.
+  • Ruedas: Hechas con uretano colado de calidad, dureza 95A y 53mm de diámetro, proveen un andar suave y gran durabilidad. Gráfica Warhol.
+  • Rulemanes: Modelo YECA Grado ABEC3 con pistas de acero: rápidos y durables.
+  • Trucks: Modelo Aves 2 de aluminio colado. Livianos y durables equipados con bujes de uretano de dureza 85A para girar fácilmente.`,"SKATE","URBAN","WOODOO",5, 37990, 0))
+  
+
+/* VARIABLES */
+
+const fragment = document.createDocumentFragment();
+const pintarCards = articulo => {
+  const cardproductos = document.querySelector(".dinamicproduct");
+  const cardtemplate = document.querySelector(".cardtemplate").content
+    articulo.forEach( (e) => { 
     
-    const persona = {
-    nombre: "Juan",
-    edad: 30,
-    ocupacion: "Programador",
-    saludar: function () {
-        console.log(`Mi nombre es ${this.nombre}`);
-    },
-    };
-    persona.saludar(); 
-
-    const cadena = "bienvenidos a coderhouse ";
-    console.log(cadena.length);
-    console.log(cadena.toLowerCase());
-    console.log(cadena.toUpperCase());
-    */
-
-/*  CONSTRUCTOR / PLANTILLA - TEMPLATE (EL contructor es la función que setea al objeto)
-
-    function Producto(nombre, precio, disponible) {
-    this.nombre = nombre;
-    this.precio = precio;
-    this.disponible = disponible;
-    }
-
-    // El Objeto se inicializa con la palabra "new" y se setea con la función "Producto y sus valores
-    const producto2 = new Producto("Teclado", 1000, false);
-    console.log(producto2); 
-
- */
-
-/*  
-    function crearObjetoCuenta(nombre, apellido, saldo) {
-    this.nombreCuenta = nombre = prompt("Ingrese su nombre");
-    this.apellidoCuenta = apellido = prompt("Ingrese su apellido");
-    this.saldoCuenta = saldo = Number(prompt("Ingrese el saldo"));
-    this.mostrarCuenta = function () {
-        return `Nombre: ${this.nombreCuenta}, apellido: ${this.apellidoCuenta}, saldo: ${this.saldoCuenta}`;
-    };
-    }
-    const cuenta1 = new crearObjetoCuenta();
-    console.log(cuenta1.mostrarCuenta()); 
-*/
-
-/*   const persona1 = { nombre: "Homero", edad: 39, calle: "Av. Siempreviva 742"};
-  //devuelve true porque la clave "nombre" existe en el objeto persona1
-  console.log( "nombre" in persona1);
-  //devuelve false porque la clave "origen" no existe en el objeto persona1
-  console.log( "origen" in persona1);
-  //recorremos todas las propiedades del objeto con el ciclo for...in
-  for (const propiedad in persona1) {
-      console.log(persona1[propiedad]);
-  }
-  
- */
-
-// CLASES
-
-/*
-
-  class Persona{
-      constructor(nombre, edad, calle) {
-          this.nombre = nombre;
-          this.edad   = edad;
-          this.calle  = calle;
-      }
-      hablar(){
-          console.log("HOLA SOY "+ this.nombre);
-      }
-  }
-  const persona1 = new Persona("Homero", 39, "Av. Siempreviva 742");
-  persona1.hablar();
-
-
-    */
-
-
-// ARRAYS
-
-/* 
-
-    const arreglo = ["Coder", 25, true];
-    const arreglo2 = ["🥙", "🍔", "🌭"];
-  //Accediendo a valores de la lista
-    console.log(arreglo[0]);
-  // Cambiando valores de la lista
-    arreglo[2] = false;
-    console.log(arreglo);
-  //Agregando elementos a la lista
-    arreglo[3] = 89;
-    console.log(arreglo);
-    const numeros = [1, 2, 3, 4, 5, 6];
-    for (let index = 0; index < 5; index++) {
-      console.log(numeros[index]);
-    }
-    */
-    /* const miArray = ["Samsung", 1500, true];
-    console.log(miArray[1]); 
-    */
-
-// PUSH
-
-/*   
-  const carrito = [];
-  carrito.push("Producto A");
-  console.log(carrito);
-  carrito.push("Producto B");
-  console.log(carrito);
-  //  "unsfhit" agrega al principio del array
-  carrito.unshift("Producto C");
-  console.log(carrito);
-  //  "pop" eliminar el ultimo elemento del arreglo
-  carrito.pop();
-  console.log(carrito);
-  //  "shift" eliminar el primer elemento del arreglo
-  carrito.shift();
-  console.log(carrito);
- */
-
-//SPLICE
-//El primer parametro desde donde arranca, y el segundo indica cuantos elementos elimino del array
-/*
-
-  const alumnos = ["Micaela", "Guido", "Clemencia", "Silvio"];
-  alumnos.splice(1, 2);
-  console.log(alumnos);
-  //JOIN
-  console.log(alumnos.join(", ")); 
-  */
-
-//Funciones de array
-
-  /* 
-  //CONCAT
-  const bebidas = ["🧁", "🧉", "☕"];
-  const alimentos = ["🍕", "🌭", "🥐"];
-  const unidos = bebidas.concat(alimentos);
-  console.log(unidos);
-
-
-  const alumnos = ["Micaela", "Guido", "Clemencia", "Silvio"]; 
-  //INDEXOF
-  console.log(alumnos.indexOf("Clemencia"));
-  //INCLUDES (true or false)
-  console.log(alumnos.includes("Clemencia"));
-  //REVERSE
-  alumnos.reverse();
-  console.log(alumnos);
-  */
-
-
-  // "PUSH" (Carga de datos en un array)
-
-  /*   
-    const listaNombres = [];
-    let cantidad = 5;
-    do {
-      let entrada = prompt("Ingrese un nombre");
-      listaNombres.push(entrada.toUpperCase());
-    } while (listaNombres.length != cantidad);
-    console.log(listaNombres); 
-    */
-
-  //  "SPLICE"
-  /*   
-    const alumnos = ["Micaela", "Guido", "Clemencia", "Silvio"];
-    const eliminar = (alumno) => {
-    let index = alumnos.indexOf(alumno);
-    if (index != -1) {
-      alumnos.splice(index, 1);
-    }
-  };
-  eliminar("Guido");
-  console.log(alumnos); 
-  */
-
-//ARRAY DE OBJETOS
-
-/* 
-  const objeto1 = {
-  id: 1,
-  producto: "TV",
-  };
-
-  const array = [
-    objeto1,
-    {
-      id: 2,
-      producto: "Monitor",
-    },
-  ];
-
-  array.push({
-  id: 3,
-  producto: "Teclado",
+    cardtemplate.querySelector(".card-body .card-text").textContent = e.descripcion;
+    cardtemplate.querySelector(".img-product").src=`./img/Productos/${e.img}`
+    cardtemplate.querySelector(".card-footer .card-text").textContent = `${e.nombre} $ ${e.precio}`
+    const clone = cardtemplate.cloneNode(true);
+    
+    fragment.appendChild(clone);
   });
-
-  console.log(array); */
-
-// FOR OF...
-
-/* 
-  const productos = [
-    { id: 1, marca: "A" },
-    { id: 2, marca: "B" },
-    { id: 3, marca: "C" },
-  ];
-  
-  console.log(productos);
-  
-  for (const x of productos) {
-    console.log(x.id);
-    console.log(x.marca);
-  }
-   */
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-  
-// FUNCIONES DE ORDEN SUPERIOR
-
-/* function primero() {
-  console.log("PRIMERO");
-}
-function segundo() {
-  console.log("SEGUNDO");
-}
-primero();
-segundo(); */
-
-/* function primero(segundo) {
-  setTimeout(function () {
-    console.log("PRIMERO");
-    segundo();
-  }, 5000);
-}
-function segundo() {
-  console.log("SEGUNDO");
-}
-primero(segundo); */
-
-//FOR EACH()
-
-/* const pendientes = ["desafios", "preentregas", "asistencias", "book"]; */
-
-// console.log(pendientes);
-
-/* pendientes.forEach((pendiente, indice) => {
-  console.log(`${indice}: ${pendiente}`);
-}); */
-
-//MAP()
-
-/* pendientes.map((p, i) => {
-  console.log(`${i}: ${p}`);
-}); */
-
-// REDUCE()
-
-/* const carrito = [
-  { nombre: "Monitor", precio: 1500 },
-  { nombre: "TV", precio: 2000 },
-  { nombre: "Teclado", precio: 500 },
-  { nombre: "Mouse", precio: 200 },
-]; */
-
-/* // console.log(carrito);
-let totalCompra = 0;
-let resultado = carrito.reduce((accum, producto) => {
-  return accum + producto.precio;
-}, 0);
-console.log(resultado); */
-
-/* const carrito = [
-  { nombre: "Monitor", precio: 1500 },
-  { nombre: "TV", precio: 2000 },
-  { nombre: "Teclado", precio: 500 },
-  { nombre: "Mouse", precio: 200 },
-];
- */
-// FILTER()
-
-/* let resultado = carrito.filter((producto) => producto.precio >= 1500);
-let resultado2 = carrito.filter((producto) => producto.nombre === "TV"); */
-
-/* console.log(resultado);
-console.log(resultado2); */
-
-//FIND()
-/* let resultado3 = carrito.find((producto) => producto.nombre === "Teclado");
-console.log(resultado3); */
-
-// MATH
-
-// const numero = 3.156;
-
-/* const redondeo = Math.round(numero);
-const redondeo2 = Math.ceil(numero); // hacia arriba
-const redondeo3 = Math.floor(numero); // hacia abajo */
-
-//valor absoluto
-/* const numero2 = -89;
-const valorAbsoluto = Math.abs(numero2);
-console.log(valorAbsoluto); */
-
-//pow => potenica
-//sqrt => raiz
-
-/* const numAleatorio = Math.random();
-console.log(numAleatorio); */
-
-//DATE
-
-/* const ahora = new Date();
-const inicial = new Date("2023-03-20");
-const fin = new Date("1985-03-06");
-console.log(ahora.getFullYear()); // año completo
-console.log(ahora.getMonth()); // mes completo
-console.log(ahora.getDate()); // dia completo
-console.log(ahora.getHours()); // hora completo
-console.log(ahora.getMinutes()); // minutos completo */
-
-  function mayorQue(n) {
-    return (m) => m > n
+  cardproductos.prepend(fragment)
 }
 
-let mayorQueDiez = mayorQue(2)
-console.log(mayorQue)
-console.log(mayorQueDiez)
-console.log( mayorQueDiez(12) )  //  true
-console.log( mayorQueDiez(8) )  //  false
 
+/*      CARGAR PAGINA       */
 
+const fetchData = async () => {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// FIN
+  pintarCards(productos)
+}
