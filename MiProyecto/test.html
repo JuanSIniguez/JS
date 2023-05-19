@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BoardStyle</title>
-    <script src="./index.js" defer></script>
+    <script src="./test.js" defer></script>
     <!------------------------- BOOTSTRAP ------------------------->
     <link
       rel="stylesheet"
@@ -176,6 +176,33 @@
       </button>
     </div>
 
+    <!------------------------------------- Ofertas ------------------------------------->
+
+    <div class="container-fluid py-3 bg-secondary">
+      <div class="container border-style">
+        <h2 class="h2 text-white text-center">Nuestros Productos</h2>
+      </div>
+      <div class="container">
+        <div class=""><h5>Filtro</h5></div>
+
+        <div class="row mx-lg-5 py-3 dinamicproduct"></div>
+      </div>
+      <div class="container-fluid">
+        <div class="container bg-secondary-grey p-0">
+          <h4 class="h4 text-center text-bg-primary">Carrito de compras</h4>
+          <div class="row p-0 m-0 border text-white text-end">
+            <div class="col-lg-8 col-md-8 col-sm-12 text-start border">
+              Articulo
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6 border">Cantidad</div>
+            <div class="col-lg-1 col-md-1 col-sm-6 border">Precio</div>
+            <div class="col-lg-1 col-md-1 col-sm-12 border">Acciones</div>
+            <div class="col-lg-1 col-md-1 col-sm-12 text-end border">Total</div>
+          </div>
+          <div class="row p-0 m-0 text-white text-end carritoCompra"></div>
+        </div>
+      </div>
+    </div>
     <!---------------------------------------------- FORMAS DE PAGO ---------------------------------------------->
     <div class="container-fluid py-4 bg-secondary-grey text-light" id="compra">
       <div class="row align-content-between py-3 mx-lg-5">
@@ -206,15 +233,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!------------------------------------- Ofertas ------------------------------------->
-    <div class="container-fluid py-3 bg-secondary">
-      <div class="container text-white text-center">
-        <h2 class="h2">Destacados</h2>
-      </div>
-      <div class="container">
-        <div class="row mx-lg-5 py-3 dinamicproduct"></div>
       </div>
     </div>
     <!------------------------------ FOOTER ------------------------------>
@@ -253,9 +271,10 @@
 
     <!------------------------------------- TEMPLATE ------------------------------------->
 
+    <!-- TEMPLATE PRODUCTOS -->
     <template class="cardtemplate">
       <div class="flip-card col-lg-3 col-md-6 col-sm-12 my-3">
-        <div class="card flip-card-inner border-style template-card">
+        <div class="card flip-card-inner border-style">
           <img
             class="card-img-top img-size flip-card-front img-product"
             src="./img/Productos/0001.webp"
@@ -269,29 +288,45 @@
             </p>
           </div>
         </div>
-        <div class="card bg-transparent m-0 px-0">
-          <div class="card-footer text-white m-0 px-0">
-            <div class="card-text h6 text-wrap">Nombre</div>
-            <form class="py-2 text-white border-0 text-center">
-              <div class="p-0 m-0 row">
-                <h6
-                  class="fw-normal fst-italic text-start col-auto align-self-center"
-                >
-                  3 y 6 Cuotas sin interes.
-                </h6>
-                <div class="btnAgregarCarrito col-auto">
-                  <button
-                    type="button"
-                    class="btn btn-secondary border-success text-success"
-                  >
-                    <i class="bi bi-cart-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
+        <div class="card-footer text-white p-2 text-start">
+          <hr />
+          <div class="card-text text-wrap h6">
+            <h6>Nombre</h6>
+          </div>
+
+          <h6 class="fw-normal fst-italic text-start col-auto precio py-2">
+            3 y 6 Cuotas sin interes.
+          </h6>
+          <div class="btnAgregarCarrito col-auto">
+            <button
+              id="comprar"
+              type="button"
+              class="comprar btn btn-secondary border-success text-success"
+            >
+              COMPRAR
+            </button>
+            <button
+              id="ver"
+              type="button"
+              class="btn btn-secondary border-success text-success"
+            >
+              <i class="bi bi-eye">VER</i>
+            </button>
           </div>
         </div>
       </div>
+    </template>
+    <!-- TEMPLATE CARRITO -->
+    <template class="carritotemplate text-end border">
+      <td
+        class="carritoArticulo col-lg-8 col-md-8 col-sm-12 text-start border"
+      ></td>
+      <td class="carritoCantidad col-lg-1 col-md-1 col-sm-6 border"></td>
+      <td class="carritoPrecio col-lg-1 col-md-1 col-sm-6 border"></td>
+      <td class="carritoBotones col-lg-1 col-md-1 col-sm-12 border"></td>
+      <td
+        class="carritoTotalArt col-lg-1 col-md-1 col-sm-12 text-end border"
+      ></td>
     </template>
     <!------------------------------------- SCRIPTS ------------------------------------->
     <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>

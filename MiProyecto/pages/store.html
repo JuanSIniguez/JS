@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>Store</title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BoardStyle</title>
-    <script src="./test.js" defer></script>
+    <script src="../test.js" defer></script>
     <!------------------------- BOOTSTRAP ------------------------->
     <link
       rel="stylesheet"
-      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
     />
     <!------------------------- FONT ------------------------->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,7 +26,7 @@
     <!-- JAVASCRIPT
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script> -->
     <!------------------------- Estilo ------------------------->
-    <link rel="stylesheet" href="scss/style.css" />
+    <link rel="stylesheet" href="../scss/style.css" />
   </head>
   <body>
     <!------------------------------------- NAVBAR ------------------------------------->
@@ -36,7 +36,7 @@
     >
       <div class="container-fluid">
         <a class="navbar-brand my-2" href="/index.html"
-          ><img src="./img/logo.png" id="#logo"
+          ><img src="../img/logo.png" id="#logo"
         /></a>
         <!------------------------------------- INICIO ------------------------------------->
         <button
@@ -87,7 +87,7 @@
         </div>
         <!------------------------------------- SEARCHBAR ------------------------------------->
         <!--         <nav class="navbar- navbar-light">
-          <div class="container-fluid"> -->
+            <div class="container-fluid"> -->
         <form class="d-flex">
           <div class="input-group">
             <input
@@ -122,125 +122,89 @@
         <!-- CIERRA NAVBAR COMPELTA -->
       </div>
     </nav>
-    <!---------------------------------------------- CARROUSEL ---------------------------------------------->
+    <!--------------------  CUADRO PRINCIPAL ------------------------->
 
     <div
-      id="carouselExampleAutoplaying"
-      class="carousel slide"
-      data-bs-ride="carousel"
+      class="container-fluid m-0 p-0 bg-secondary-grey text-white text-center overflow-hidden border"
     >
-      <div class="carousel-inner" style="height: 100%">
-        <div class="carousel-item active">
-          <img
-            src="./img/carrousel-skate.webp"
-            class="d-block w-100 img-fluid"
-            alt="Cafe"
-          />
+      <h2 class="py-3">Productos</h2>
+      <div class="row border">
+        <div
+          class="container col-lg-2 col-md-12 col-sm- border text-start px-2 py-1 dinamicFilters"
+        >
+          <div class="text-center py-3 filter">
+            <i class="bi bi-funnel h1 text-center">
+              <span class="h5 text-center align-middle"> Filtrar por </span>
+            </i>
+          </div>
+          <!-- <span>Categoriassss</span> -->
+          <!-- TEMPLATE FILTRO -->
         </div>
-        <div class="carousel-item">
-          <img
-            src="./img/carrousel-snowboard.jpg"
-            class="d-block w-100 img-fluid"
-            alt="Store"
-          />
-        </div>
-        <div class="carousel-item">
-          <img
-            src="./img/carrousel-longboard.webp"
-            class="d-block w-100 img-fluid"
-            alt="Espresso"
-          />
-        </div>
-        <div class="carousel-item">
-          <img
-            src="./img/carrousel-surf.webp"
-            class="d-block w-100 img-fluid"
-            alt="Cafetera"
-          />
-        </div>
-      </div>
-      <button
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#carouselExampleAutoplaying"
-        data-bs-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#carouselExampleAutoplaying"
-        data-bs-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
 
-    <!---------------------------------------------- FORMAS DE PAGO ---------------------------------------------->
-    <div class="container-fluid py-4 bg-secondary-grey text-light" id="compra">
-      <div class="row align-content-between py-3 mx-lg-5">
-        <div class="col-lg-4 col-md-4 col-sm-12">
-          <div class="py-1 row">
-            <i class="bi bi-truck fs-1 col-auto"></i>
-            <div class="col-auto text-start">
-              <h3 class="fw-bold h3">Envío gratis</h3>
-              <p class="fs-5 text-light">En compras superiores a $45.000</p>
-            </div>
+        <div class="container-fluid py-3 col-lg-10 col-md-12 col-sm-1 2">
+          <div class="dropdown text-end px-5 ordenes">
+            <button
+              class="btn btn-secondary dropdown-toggle border"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Ordernar por:
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li>
+                <a class="dropdown-item mayor" href="#"
+                  >Precio: mayor a menor</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item menor" href="#"
+                  >Precio: menor a mayor</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item ascendente" href="#"
+                  >Nombre: Ascendente</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item descendete" href="#"
+                  >Mombre: Descendete</a
+                >
+              </li>
+            </ul>
           </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-12">
-          <div class="row">
-            <i class="bi bi-credit-card-2-back-fill fs-1 col-auto"></i>
-            <div class="col-auto text-start">
-              <h3 class="fw-bold h3">3 y 6 cuotas sin interés</h3>
-              <p class="fs-5 text-light">Con tarjetas de crédito bancarias</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-12">
-          <div class="py-1 row">
-            <i class="bi bi-shield-check fs-1 col-auto"></i>
-            <div class="col-auto text-start">
-              <h3 class="fw-bold h3">Pagá de forma segura</h3>
-              <p class="fs-5 text-light">Protegemos tus datos</p>
-            </div>
-          </div>
+
+          <div class="row dinamicproduct py-4"></div>
         </div>
       </div>
-    </div>
-    <!------------------------------------- Ofertas ------------------------------------->
-    <div class="container-fluid py-3 bg-secondary">
-      <div class="container border-style">
-        <h2 class="h2 text-white text-center">Destacados</h2>
-      </div>
-      <div class="container">
-        <div class="row mx-lg-5 py-3 dinamicproduct"></div>
-      </div>
-      <div class="container-fluid">
-        <div class="container bg-secondary-grey p-0">
+      <div class="container-fluid my-5">
+        <div class="container bg-secondary-grey p-0 border">
           <h4 class="h4 text-center text-bg-primary">Carrito de compras</h4>
           <div class="row p-0 m-0 border text-white text-end">
             <div class="col-lg-8 col-md-8 col-sm-12 text-start border">
               Articulo
             </div>
-            <div class="col-lg-1 col-md-1 col-sm-6 border">Cantidad</div>
-            <div class="col-lg-1 col-md-1 col-sm-6 border">Precio</div>
-            <div class="col-lg-1 col-md-1 col-sm-12 border">Acciones</div>
+            <div class="col-lg-1 col-md-1 col-sm-6 border center">Cantidad</div>
+            <div class="col-lg-1 col-md-1 col-sm-6 border center">Precio</div>
+            <div class="col-lg-1 col-md-1 col-sm-12 border text-center">
+              Acciones
+            </div>
             <div class="col-lg-1 col-md-1 col-sm-12 text-end border">Total</div>
           </div>
-          <div class="row p-0 m-0 text-white text-end carritoCompra"></div>
+          <div
+            class="container-fluid p-0 m-0 text-white text-end carritoCompra"
+          ></div>
         </div>
       </div>
     </div>
     <!------------------------------ FOOTER ------------------------------>
-    <div class="container-fluid bg-secondary-grey" id="footer">
-      <div class="row bg-secondary-grey py-3">
+    <div class="container-fluid bg-secondary" id="footer">
+      <div class="row bg-secondary py-3">
         <div class="col-lg-4 col-sm-12 text-start py-3">
           <a href="index.html" class="logo" alt="Coffee Break" id="logopie">
-            <img class="img-fluid" src="./img/logo.png"
+            <img class="img-fluid" src="../img/logo.png"
           /></a>
         </div>
         <div
@@ -273,14 +237,14 @@
 
     <!-- TEMPLATE PRODUCTOS -->
     <template class="cardtemplate">
-      <div class="flip-card col-lg-3 col-md-6 col-sm-12 my-3">
+      <div class="flip-card col-lg-3 col-md-6 col-sm-12 px-4 py-3">
         <div class="card flip-card-inner border-style">
           <img
             class="card-img-top img-size flip-card-front img-product"
-            src="img/Productos/"
+            src="../img/Productos/"
             alt="tagalt"
           />
-          <div class="card-body flip-card-back overflow-hidden">
+          <div class="card-body flip-card-back overflow-hidden bg-secondary">
             <p
               class="overflow-hidden card-text text-white .text-wrap text-start fs-6"
             >
@@ -316,20 +280,55 @@
         </div>
       </div>
     </template>
-    <!-- TEMPLATE CARRITO -->
-    <template class="carritotemplate text-end border">
-      <td
-        class="carritoArticulo col-lg-8 col-md-8 col-sm-12 text-start border"
-      ></td>
-      <td class="carritoCantidad col-lg-1 col-md-1 col-sm-6 border"></td>
-      <td class="carritoPrecio col-lg-1 col-md-1 col-sm-6 border"></td>
-      <td class="carritoBotones col-lg-1 col-md-1 col-sm-12 border"></td>
-      <td
-        class="carritoTotalArt col-lg-1 col-md-1 col-sm-12 text-end border"
-      ></td>
+
+    <!-- TEMPLATE FILTRO -->
+
+    <template class="templateFilters">
+      <ul class="categoria">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="flexCheckDefault"
+        />
+        <label class="form-check-label px-1" for="flexCheckDefault">
+          Default checkbox
+        </label>
+      </ul>
     </template>
-    <!------------------------------------- SCRIPTS ------------------------------------->
-    <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- TEMPLATE CARRITO -->
+    <template class="carritotemplate text-end border m-0">
+      <div class="carritoProductos row px-2">
+        <div
+          class="carritoArticulo col-lg-8 col-md-8 col-sm-12 text-start align-self-center"
+        ></div>
+        <div
+          class="carritoCantidad col-lg-1 col-md-1 col-sm-6 align-self-center text-center"
+        ></div>
+        <div
+          class="carritoPrecio col-lg-1 col-md-1 col-sm-6 align-self-center center"
+        ></div>
+        <div
+          class="carritoBotones col-lg-1 col-md-1 col-sm-12 d-flex justify-content-around"
+        >
+          <button type="button" class="btn btn-secondary-grey text-success">
+            <!-- <i class="bi bi-plus-lg"></i> -->
+            <!-- <i class="bi bi-plus-circle-fill"></i> -->
+            <i class="bi bi-plus-circle fs-5 sumar"></i>
+          </button>
+          <button type="button" class="btn btn-secondary-grey text-danger">
+            <!-- <i class="bi bi-dash"></i> -->
+            <i class="bi bi-dash-circle fs-5 restar"></i>
+            <!-- <i class="bi bi-dash-circle-fill"></i> -->
+          </button>
+        </div>
+        <div
+          class="carritoTotalArt col-lg-1 col-md-1 col-sm-12 text-end align-self-center"
+        ></div>
+      </div>
+    </template>
+
+    <script src="../node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   </body>
 </html>
