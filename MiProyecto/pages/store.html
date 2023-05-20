@@ -1,334 +1,357 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Store</title>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="../test.js" defer></script>
-    <!------------------------- BOOTSTRAP ------------------------->
-    <link
-      rel="stylesheet"
-      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
-    <!------------------------- FONT ------------------------->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@200&display=swap"
-    />
-    <!-- ICONOS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
-    />
-    <!-- JAVASCRIPT
+	<head>
+		<title>Store</title>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="../test.js" defer></script>
+		<!------------------------- BOOTSTRAP ------------------------->
+		<link
+			rel="stylesheet"
+			href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
+		/>
+		<!------------------------- FONT ------------------------->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@200&display=swap"
+		/>
+		<!-- ICONOS -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+		/>
+		<!-- JAVASCRIPT
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script> -->
-    <!------------------------- Estilo ------------------------->
-    <link rel="stylesheet" href="../scss/style.css" />
-  </head>
-  <body>
-    <!------------------------------------- NAVBAR ------------------------------------->
-    <nav
-      class="navbar navbar-expand-md bg-secondary navbar-s px-2 sticky-top"
-      id="navbar"
-    >
-      <div class="container-fluid">
-        <a class="navbar-brand my-2" href="/index.html"
-          ><img src="../img/logo.png" id="#logo"
-        /></a>
-        <!------------------------------------- INICIO ------------------------------------->
-        <button
-          class="navbar-toggler text-style"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon bg-secondary"></span>
-        </button>
+		<!------------------------- Estilo ------------------------->
+		<link rel="stylesheet" href="../scss/style.css" />
+	</head>
+	<body>
+		<!------------------------------------- NAVBAR ------------------------------------->
+		<nav
+			class="navbar navbar-expand-md bg-secondary navbar-s px-2 sticky-top"
+			id="navbar"
+		>
+			<div class="container-fluid">
+				<a class="navbar-brand my-2" href="/index.html"
+					><img src="../img/logo.png" id="#logo"
+				/></a>
+				<!------------------------------------- INICIO ------------------------------------->
+				<button
+					class="navbar-toggler text-style"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span class="navbar-toggler-icon bg-secondary"></span>
+				</button>
 
-        <div
-          class="collapse navbar-collapse fw-semibold"
-          id="navbarSupportedContent"
-        >
-          <ul class="navbar-nav px-5">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Inicio</a>
-            </li>
-            <div class="nav-item btn-group" id="navMenu" role="group">
-              <button
-                id="btnGroupDrop1"
-                type="button"
-                class="btn btn-secondary dropdown-toggle text-sm-start fw-semibold"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Productos
-              </button>
-              <ul
-                class="dropdown-menu bg-secondary"
-                aria-labelledby="btnGroupDrop1"
-              >
-                <li>
-                  <a class="dropdown-item text-style" href="#"
-                    >"Categorias(DOM)"</a
-                  >
-                </li>
-              </ul>
-            </div>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Tienda</a>
-            </li>
-          </ul>
-        </div>
-        <!------------------------------------- SEARCHBAR ------------------------------------->
-        <!--         <nav class="navbar- navbar-light">
+				<div
+					class="collapse navbar-collapse fw-semibold"
+					id="navbarSupportedContent"
+				>
+					<ul class="navbar-nav px-5">
+						<li class="nav-item">
+							<a class="nav-link active" href="#">Inicio</a>
+						</li>
+						<div class="nav-item btn-group" id="navMenu" role="group">
+							<button
+								id="btnGroupDrop1"
+								type="button"
+								class="btn btn-secondary dropdown-toggle text-sm-start fw-semibold"
+								data-bs-toggle="dropdown"
+								aria-expanded="false"
+							>
+								Productos
+							</button>
+							<ul
+								class="dropdown-menu bg-secondary"
+								aria-labelledby="btnGroupDrop1"
+							>
+								<li>
+									<a class="dropdown-item text-style" href="#"
+										>"Categorias(DOM)"</a
+									>
+								</li>
+							</ul>
+						</div>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Tienda</a>
+						</li>
+					</ul>
+				</div>
+				<!------------------------------------- SEARCHBAR ------------------------------------->
+				<!--         <nav class="navbar- navbar-light">
             <div class="container-fluid"> -->
-        <form class="d-flex">
-          <div class="input-group">
-            <input
-              class="form-control"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button
-              class="btn btn-outline-success input-group-text bg-transparent text-style px-3"
-              type="submit"
-            >
-              <i class="bi bi-search fs-5"></i>
-            </button>
-          </div>
-        </form>
-        <form class="d-flex">
-          <div class="input-group">
-            <button
-              class="btn btn-outline-success input-group-text bg-transparent text-style px-3"
-              type="submit"
-            >
-              <i class="bi bi-person-fill fs-4"></i>
-            </button>
-            <button
-              class="btn btn-outline-success input-group-text bg-transparent text-style px-3"
-            >
-              <i class="bi bi-cart3 fs-5"></i>
-            </button>
-          </div>
-        </form>
-        <!-- CIERRA NAVBAR COMPELTA -->
-      </div>
-    </nav>
-    <!--------------------  CUADRO PRINCIPAL ------------------------->
+				<form class="d-flex">
+					<div class="input-group">
+						<input
+							class="form-control"
+							type="search"
+							placeholder="Search"
+							aria-label="Search"
+						/>
+						<button
+							class="btn btn-outline-success input-group-text bg-transparent text-style px-3"
+							type="submit"
+						>
+							<i class="bi bi-search fs-5"></i>
+						</button>
+					</div>
+				</form>
+				<form class="d-flex">
+					<div class="input-group">
+						<button
+							class="btn btn-outline-success input-group-text bg-transparent text-style px-3"
+							type="submit"
+						>
+							<i class="bi bi-person-fill fs-4"></i>
+						</button>
+						<button
+							class="btn btn-outline-success input-group-text bg-transparent text-style px-3"
+						>
+							<i class="bi bi-cart3 fs-5"></i>
+						</button>
+					</div>
+				</form>
+				<!-- CIERRA NAVBAR COMPELTA -->
+			</div>
+		</nav>
+		<!--------------------  CUADRO PRINCIPAL ------------------------->
 
-    <div
-      class="container-fluid m-0 p-0 bg-secondary-grey text-white text-center overflow-hidden border"
-    >
-      <h2 class="py-3">Productos</h2>
-      <div class="row border">
-        <div
-          class="container col-lg-2 col-md-12 col-sm- border text-start px-2 py-1 dinamicFilters"
-        >
-          <div class="text-center py-3 filter">
-            <i class="bi bi-funnel h1 text-center">
-              <span class="h5 text-center align-middle"> Filtrar por </span>
-            </i>
-          </div>
-          <!-- <span>Categoriassss</span> -->
-          <!-- TEMPLATE FILTRO -->
-        </div>
+		<div
+			class="container-fluid m-0 p-0 bg-secondary-grey text-white text-center overflow-hidden border"
+		>
+			<h2 class="py-3">Productos</h2>
+			<div class="row border">
+				<div
+					class="container col-lg-2 col-md-12 col-sm- border text-start px-2 py-1 dinamicFilters"
+				>
+					<div class="text-center py-3 filter">
+						<i class="bi bi-funnel h1 text-center">
+							<span class="h5 text-center align-middle">
+								Filtrar por
+							</span>
+						</i>
+					</div>
+					<!-- <span>Categoriassss</span> -->
+					<!-- TEMPLATE FILTRO -->
+				</div>
 
-        <div class="container-fluid py-3 col-lg-10 col-md-12 col-sm-1 2">
-          <div class="dropdown text-end px-5 ordenes">
-            <button
-              class="btn btn-secondary dropdown-toggle border"
-              type="button"
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Ordernar por:
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li>
-                <a class="dropdown-item mayor" href="#"
-                  >Precio: mayor a menor</a
-                >
-              </li>
-              <li>
-                <a class="dropdown-item menor" href="#"
-                  >Precio: menor a mayor</a
-                >
-              </li>
-              <li>
-                <a class="dropdown-item ascendente" href="#"
-                  >Nombre: Ascendente</a
-                >
-              </li>
-              <li>
-                <a class="dropdown-item descendete" href="#"
-                  >Mombre: Descendete</a
-                >
-              </li>
-            </ul>
-          </div>
+				<div class="container-fluid py-3 col-lg-10 col-md-12 col-sm-1 2">
+					<div class="dropdown text-end px-5 ordenes">
+						<button
+							class="btn btn-secondary dropdown-toggle border"
+							type="button"
+							id="dropdownMenuButton1"
+							data-bs-toggle="dropdown"
+							aria-expanded="false"
+						>
+							Ordernar por:
+						</button>
+						<ul
+							class="dropdown-menu"
+							aria-labelledby="dropdownMenuButton1"
+						>
+							<li>
+								<a class="dropdown-item mayor" href="#"
+									>Precio: mayor a menor</a
+								>
+							</li>
+							<li>
+								<a class="dropdown-item menor" href="#"
+									>Precio: menor a mayor</a
+								>
+							</li>
+							<li>
+								<a class="dropdown-item ascendente" href="#"
+									>Nombre: Ascendente</a
+								>
+							</li>
+							<li>
+								<a class="dropdown-item descendete" href="#"
+									>Mombre: Descendete</a
+								>
+							</li>
+						</ul>
+					</div>
 
-          <div class="row dinamicproduct py-4"></div>
-        </div>
-      </div>
-      <div class="container-fluid my-5">
-        <div class="container bg-secondary-grey p-0 border">
-          <h4 class="h4 text-center text-bg-primary">Carrito de compras</h4>
-          <div class="row p-0 m-0 border text-white text-end">
-            <div class="col-lg-8 col-md-8 col-sm-12 text-start border">
-              Articulo
-            </div>
-            <div class="col-lg-1 col-md-1 col-sm-6 border center">Cantidad</div>
-            <div class="col-lg-1 col-md-1 col-sm-6 border center">Precio</div>
-            <div class="col-lg-1 col-md-1 col-sm-12 border text-center">
-              Acciones
-            </div>
-            <div class="col-lg-1 col-md-1 col-sm-12 text-end border">Total</div>
-          </div>
-          <div
-            class="container-fluid p-0 m-0 text-white text-end carritoCompra"
-          ></div>
-        </div>
-      </div>
-    </div>
-    <!------------------------------ FOOTER ------------------------------>
-    <div class="container-fluid bg-secondary" id="footer">
-      <div class="row bg-secondary py-3">
-        <div class="col-lg-4 col-sm-12 text-start py-3">
-          <a href="index.html" class="logo" alt="Coffee Break" id="logopie">
-            <img class="img-fluid" src="../img/logo.png"
-          /></a>
-        </div>
-        <div
-          class="col-lg-6 col-sm-6 text-style text-decoration-none py-3 text-white text-start ps-lg-5"
-        >
-          <h2 class="h2">Contacto</h2>
-          <ul class="">
-            <li>Dirección: Av Dellepiane Norte 4781</li>
-            <li>info@BoardStyle</li>
-            <li>Teléfono: 11-2775-0955</li>
-          </ul>
-        </div>
-        <div class="col-lg-2 col-sm-6">
-          <div class="mt-5 ps-2 pb-3 py-3 fs-3 text-white" id="redes">
-            <a class="px-1" href="#"
-              ><i class="bi bi-whatsapp text-white"></i
-            ></a>
-            <a class="px-1" href="#"
-              ><i class="bi bi-facebook text-white"></i
-            ></a>
-            <a class="px-1" href="#"
-              ><i class="bi bi-instagram text-white"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-    </div>
+					<div class="row dinamicproduct py-4"></div>
+				</div>
+			</div>
+			<div class="container-fluid my-5">
+				<div class="container bg-secondary-grey p-0 border">
+					<h4 class="h4 text-center text-bg-primary">
+						Carrito de compras
+					</h4>
+					<div class="row p-0 m-0 border text-white text-end">
+						<div class="col-lg-8 col-md-8 col-sm-12 text-start border">
+							Articulo
+						</div>
+						<div class="col-lg-1 col-md-1 col-sm-6 border center">
+							Cantidad
+						</div>
+						<div class="col-lg-1 col-md-1 col-sm-6 border center">
+							Precio
+						</div>
+						<div class="col-lg-1 col-md-1 col-sm-12 border text-center">
+							Acciones
+						</div>
+						<div class="col-lg-1 col-md-1 col-sm-12 text-end border">
+							Total
+						</div>
+					</div>
+					<div
+						class="container-fluid p-0 m-0 text-white text-end carritoCompra"
+					></div>
+				</div>
+			</div>
+		</div>
+		<!------------------------------ FOOTER ------------------------------>
+		<div class="container-fluid bg-secondary" id="footer">
+			<div class="row bg-secondary py-3">
+				<div class="col-lg-4 col-sm-12 text-start py-3">
+					<a
+						href="index.html"
+						class="logo"
+						alt="Coffee Break"
+						id="logopie"
+					>
+						<img class="img-fluid" src="../img/logo.png"
+					/></a>
+				</div>
+				<div
+					class="col-lg-6 col-sm-6 text-style text-decoration-none py-3 text-white text-start ps-lg-5"
+				>
+					<h2 class="h2">Contacto</h2>
+					<ul class="">
+						<li>Dirección: Av Dellepiane Norte 4781</li>
+						<li>info@BoardStyle</li>
+						<li>Teléfono: 11-2775-0955</li>
+					</ul>
+				</div>
+				<div class="col-lg-2 col-sm-6">
+					<div class="mt-5 ps-2 pb-3 py-3 fs-3 text-white" id="redes">
+						<a class="px-1" href="#"
+							><i class="bi bi-whatsapp text-white"></i
+						></a>
+						<a class="px-1" href="#"
+							><i class="bi bi-facebook text-white"></i
+						></a>
+						<a class="px-1" href="#"
+							><i class="bi bi-instagram text-white"></i
+						></a>
+					</div>
+				</div>
+			</div>
+		</div>
 
-    <!------------------------------------- TEMPLATE ------------------------------------->
+		<!------------------------------------- TEMPLATE ------------------------------------->
 
-    <!-- TEMPLATE PRODUCTOS -->
-    <template class="cardtemplate">
-      <div class="flip-card col-lg-3 col-md-6 col-sm-12 px-4 py-3">
-        <div class="card flip-card-inner border-style">
-          <img
-            class="card-img-top img-size flip-card-front img-product"
-            src="../img/Productos/"
-            alt="tagalt"
-          />
-          <div class="card-body flip-card-back overflow-hidden bg-secondary">
-            <p
-              class="overflow-hidden card-text text-white .text-wrap text-start fs-6"
-            >
-              Caracteristicas
-            </p>
-          </div>
-        </div>
-        <div class="card-footer text-white p-2 text-start">
-          <hr />
-          <div class="card-text text-wrap h6">
-            <h6>Nombre</h6>
-          </div>
+		<!-- TEMPLATE PRODUCTOS -->
+		<template class="cardtemplate">
+			<div class="flip-card col-lg-3 col-md-6 col-sm-12 px-4 py-3">
+				<div class="card flip-card-inner border-style">
+					<img
+						class="card-img-top img-size flip-card-front img-product"
+						src="../img/Productos/"
+						alt="tagalt"
+					/>
+					<div
+						class="card-body flip-card-back overflow-hidden bg-secondary"
+					>
+						<p
+							class="overflow-hidden card-text text-white .text-wrap text-start fs-6"
+						>
+							Caracteristicas
+						</p>
+					</div>
+				</div>
+				<div class="card-footer text-white p-2 text-start">
+					<hr />
+					<div class="card-text text-wrap h6">
+						<h6>Nombre</h6>
+					</div>
 
-          <h6 class="fw-normal fst-italic text-start col-auto precio py-2">
-            3 y 6 Cuotas sin interes.
-          </h6>
-          <div class="btnAgregarCarrito col-auto">
-            <button
-              id="comprar"
-              type="button"
-              class="comprar btn btn-secondary border-success text-success"
-            >
-              COMPRAR
-            </button>
-            <button
-              id="ver"
-              type="button"
-              class="btn btn-secondary border-success text-success"
-            >
-              <i class="bi bi-eye">VER</i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </template>
+					<h6 class="fw-normal fst-italic text-start col-auto precio py-2">
+						3 y 6 Cuotas sin interes.
+					</h6>
+					<div class="btnAgregarCarrito col-auto">
+						<button
+							id="comprar"
+							type="button"
+							class="comprar btn btn-secondary border-success text-success"
+						>
+							COMPRAR
+						</button>
+						<button
+							id="ver"
+							type="button"
+							class="btn btn-secondary border-success text-success"
+						>
+							<i class="bi bi-eye">VER</i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</template>
 
-    <!-- TEMPLATE FILTRO -->
+		<!-- TEMPLATE FILTRO -->
 
-    <template class="templateFilters">
-      <ul class="categoria">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          value=""
-          id="flexCheckDefault"
-        />
-        <label class="form-check-label px-1" for="flexCheckDefault">
-          Default checkbox
-        </label>
-      </ul>
-    </template>
-    <!-- TEMPLATE CARRITO -->
-    <template class="carritotemplate text-end border m-0">
-      <div class="carritoProductos row px-2">
-        <div
-          class="carritoArticulo col-lg-8 col-md-8 col-sm-12 text-start align-self-center"
-        ></div>
-        <div
-          class="carritoCantidad col-lg-1 col-md-1 col-sm-6 align-self-center text-center"
-        ></div>
-        <div
-          class="carritoPrecio col-lg-1 col-md-1 col-sm-6 align-self-center center"
-        ></div>
-        <div
-          class="carritoBotones col-lg-1 col-md-1 col-sm-12 d-flex justify-content-around"
-        >
-          <button type="button" class="btn btn-secondary-grey text-success">
-            <!-- <i class="bi bi-plus-lg"></i> -->
-            <!-- <i class="bi bi-plus-circle-fill"></i> -->
-            <i class="bi bi-plus-circle fs-5 sumar"></i>
-          </button>
-          <button type="button" class="btn btn-secondary-grey text-danger">
-            <!-- <i class="bi bi-dash"></i> -->
-            <i class="bi bi-dash-circle fs-5 restar"></i>
-            <!-- <i class="bi bi-dash-circle-fill"></i> -->
-          </button>
-        </div>
-        <div
-          class="carritoTotalArt col-lg-1 col-md-1 col-sm-12 text-end align-self-center"
-        ></div>
-      </div>
-    </template>
+		<template class="templateFilters">
+			<ul class="categoria">
+				<input
+					class="form-check-input"
+					type="checkbox"
+					value=""
+					id="flexCheckDefault"
+				/>
+				<label class="form-check-label px-1" for="flexCheckDefault">
+					Default checkbox
+				</label>
+			</ul>
+		</template>
+		<!-- TEMPLATE CARRITO -->
+		<template class="carritotemplate text-end border m-0">
+			<div class="carritoProductos row px-2">
+				<div
+					class="carritoArticulo col-lg-8 col-md-8 col-sm-12 text-start align-self-center"
+				></div>
+				<div
+					class="carritoCantidad col-lg-1 col-md-1 col-sm-6 align-self-center text-center"
+				></div>
+				<div
+					class="carritoPrecio col-lg-1 col-md-1 col-sm-6 align-self-center center"
+				></div>
+				<div
+					class="carritoBotones col-lg-1 col-md-1 col-sm-12 d-flex justify-content-around"
+				>
+					<button
+						type="button"
+						class="btn btn-secondary-grey text-success"
+					>
+						<!-- <i class="bi bi-plus-lg"></i> -->
+						<!-- <i class="bi bi-plus-circle-fill"></i> -->
+						<i class="bi bi-plus-circle fs-5 sumar"></i>
+					</button>
+					<button type="button" class="btn btn-secondary-grey text-danger">
+						<!-- <i class="bi bi-dash"></i> -->
+						<i class="bi bi-dash-circle fs-5 restar"></i>
+						<!-- <i class="bi bi-dash-circle-fill"></i> -->
+					</button>
+				</div>
+				<div
+					class="carritoTotalArt col-lg-1 col-md-1 col-sm-12 text-end align-self-center"
+				></div>
+			</div>
+		</template>
 
-    <script src="../node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  </body>
+		<script src="../node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+		<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	</body>
 </html>

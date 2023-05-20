@@ -2,8 +2,16 @@
 
 let categorias = []
 let marca = []
-let carrito = []
 
+let carrito = []
+if(localStorage.getItem('lsCarrito')) {
+ carrito = JSON.parse(localStorage.getItem('lsCarrito'))
+}
+let productos = []
+if(localStorage.getItem('lsProductos')) {
+  productos = JSON.parse(localStorage.getItem('lsProductos'))
+ }
+ 
 const fragment = document.createDocumentFragment();
 
 const cardproductos = document.querySelector('.dinamicproduct');
@@ -17,6 +25,8 @@ const listCategorias = document.querySelector('.templateFilters').content
 
 const imgpath = cardtemplate.querySelector('.img-product').getAttribute('src')
 
+const eOrdernar = document.querySelector('.ordenes')
+
 //         CARGA DE PAGINA
 
 document.addEventListener('DOMContentLoaded', e => { fetchData() });
@@ -26,10 +36,13 @@ const fetchData = async () => {
   try {
     const res = await fetch("../arts.JSON")
     const productos = await res.json()
-
+    const lsProductos = localStorage.setItem("lsProductos", JSON.stringify(productos))
     pintarCards(productos)
     pintarFiltros(productos)
-
+    if (localStorage.getItem('lsCarrito')) {
+        const carrito = JSON.parse(localStorage.getItem('lsCarrito'))
+        pintarcarrito(carrito)
+      }
   } catch (error) {
     console.log(error)
   }
@@ -69,15 +82,15 @@ const fetchData = async () => {
 
 //                DISEÑO DEL CARRITO 
 
-const pintarcarrito = () =>{
+const pintarcarrito = obj =>{
+ 
 
-  Object.values(carrito).forEach(producto => {    
+  Object.values(obj).forEach(producto => {    
     templatecarrito.querySelector('.carritoArticulo').setAttribute('data-value', producto.codigo)
     templatecarrito.querySelector('.carritoArticulo').textContent = `(${producto.codigo}) ${producto.nombre}`
     templatecarrito.querySelector('.carritoCantidad').textContent = producto.cantidad
     templatecarrito.querySelector('.carritoCantidad').setAttribute('data-value', producto.cantidad)
-    templatecarrito.querySelector('.carritoPrecio').textContent = "$ " +producto.precio.replace(/\D/g, "")
-    .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+    templatecarrito.querySelector('.carritoPrecio').textContent = "$ " +producto.precio
     templatecarrito.querySelector('.carritoPrecio').setAttribute('data-value', producto.precio)
     let ntotal = producto.cantidad*producto.precio
     templatecarrito.querySelector('.carritoTotalArt').textContent = `$ ${(producto.cantidad*producto.precio).toLocaleString('es-ES')}`
@@ -85,18 +98,19 @@ const pintarcarrito = () =>{
     fragment.appendChild(clone);
     templatecarrito.querySelector('.sumar').setAttribute('data-value', producto.codigo)
   })
-  const nCantidad = Object.values(carrito).reduce((acc, {cantidad}) => acc + cantidad, 0)
-  const nTotal   = Object.values(carrito).reduce((acc, {cantidad, precio}) => acc + cantidad * precio, 0)
+  const nCantidad = Object.values(obj).reduce((acc, {cantidad}) => acc + cantidad, 0)
+  const nTotal   = Object.values(obj).reduce((acc, {cantidad, precio}) => acc + cantidad * precio, 0)
   divCarrito.innerHTML = `<h5 class="h4 text-white border text-end py-0 px-2 m-0 ">Cantidad total: ${nCantidad} <br>Total de la compra: $${nTotal}</h5>`
   divCarrito.prepend(fragment)
-    
+  const lsCarrito = localStorage.setItem("lsCarrito", JSON.stringify(obj))
+  
 }
 
 //               AGREGA ELEMENTOS DEL CARRITO A LAS CARDS Y VUELVE A PINTAR EL CARRITO(SIEMRPE SE PISA)
   const addCarrito = e => {
     if (e.target.classList.contains('comprar')){
       setCarrito(e.target.parentElement.parentElement)
-      pintarcarrito()
+      pintarcarrito(carrito)
     }
     e.stopPropagation()
   } 
@@ -111,54 +125,75 @@ const pintarcarrito = () =>{
       cantidad : 1
     }
     
-      if(carrito.hasOwnProperty(producto.codigo)) {
-        producto.cantidad = carrito[producto.codigo].cantidad + 1
-      
-      }
-      
-      
-      carrito[producto.codigo] = {...producto}
-      
-    }
+    if(carrito.length < 1){
+      carrito.push(producto)
+    }else{
+  
+        let existeproducto = carrito.find((car, i) => {
+        if (car.codigo === producto.codigo) {
+          car.cantidad += producto.cantidad
+          return true
+        
+        }else{
+          return false
+        }
+        })   
+        if(existeproducto){
+            
 
+        }else{
+          carrito.push(producto)
+        }
+    }
+  }
 
 //                BOTONES DEL CARRITO
 
   const sumarCarrito = objeto => {
-    const productos = objeto.querySelectorAll('.carritoProductos')
-    productos.forEach( (btn) => {
+    let  carProducto = objeto.querySelectorAll('.carritoProductos')
+    carProducto.forEach( (btn) => {
       btn.addEventListener("click", (e) => {
         const productoid = btn.querySelector('.carritoArticulo').getAttribute('data-value')
-        carrito[productoid].cantidad = carrito[productoid].cantidad + 1
-        
-        pintarcarrito()
+        carrito.find((car, i) => {
+          if (car.codigo === productoid) {
+            car.cantidad ++
+            pintarcarrito(carrito)
+          }
+        })
+
+      pintarcarrito(carrito)
       })
       btn.stopPropagation
     })    
   }
 
   const restarCarrito = objeto => {
-    const productos = objeto.querySelectorAll('.carritoProductos')
-    productos.forEach( (btn) => {
+    let carProducto = objeto.querySelectorAll('.carritoProductos')
+    carProducto.forEach( (btn) => {
       btn.addEventListener("click", (e) => {
-        console.log("Pasando por el click, Carrito largo= 1")
         const productoid = btn.querySelector('.carritoArticulo').getAttribute('data-value')
-        if(carrito[productoid].cantidad < 1){
-          console.log("Carrito.cantidad < 1")
-          for(let i = 0; i < productos.length; i++){
-            delete carrito[productoid]
+       
+        carrito.find((car, i) => {
+        if (car.codigo === productoid) {
+
+          if (car.cantidad <= 1) {
+            carrito.splice(i,1)
+            }else{
+              car.cantidad--
+              pintarcarrito(carrito)
+            }
           }
-        }else {
-        carrito[productoid].cantidad = carrito[productoid].cantidad -1
-        }
-        pintarcarrito()
-		btn.stopPropagation
-      })
+
+        })
+        
+      pintarcarrito(carrito)
+    })
+	  	btn.stopPropagation
       
     })    
   }
-  
-  //			Lista las categorias de los prodcuctos
+
+  //			Lista las categorias de los productos
 	const listarCategorias = productos =>{
 		productos.forEach( (e) => {
 			if (categorias.includes(e.categoria) ){
@@ -185,6 +220,42 @@ const pintarcarrito = () =>{
 	
   } 
 
+  //      Order By
+
+ const ordenarAsc = arr => { 
+  arr.sort( (a,b) => {
+  const nameA = a.nombre.toUpperCase()
+  const nameB = b.nombre.toUpperCase()
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+  return 0;
+})
+} 
+
+function ordenarDesc() { 
+  productos.sort( (a,b) => {
+  const nameA = a.nombre.toUpperCase()
+  const nameB = b.nombre.toUpperCase()
+  if (nameA > nameB) {
+    return -1;
+  }
+  if (nameA < nameB) {
+    return 1;
+  }
+  return 0;
+}) 
+} 
+
+const menoramayor = () => {productos.sort((a,b) => a.precio - b.precio)}
+const mayoramenor = () => {productos.sort((a,b) => b.precio - a.precio)}
+
+
+
+
 //
 //         EVENTOS
 //
@@ -194,6 +265,7 @@ const pintarcarrito = () =>{
     addCarrito(e)
   })
 
+//                Revisa los botones sumar y restar
   divCarrito.addEventListener('click',(e) => {
     if(e.target.classList.contains('sumar'))
     {
@@ -208,45 +280,29 @@ const pintarcarrito = () =>{
   e.stopPropagation
   })
 
+  eOrdernar.addEventListener('click',(e) =>{
+    if(e.target.classList.contains('ascendente')){
+      ascendente(productos)
+      pintarCards(productos)
+    }else if(e.target.classList.contains('descendete')){
+      ordenarDesc(productos)
+      pintarCards(productos)
+    }else if(e.target.classList.contains('mayor')){
+      mayoramenor()
+      pintarCards(productos)
+    }else if(e.target.classList.contains('menor')){
+      menoramayor()
+      pintarCards(productos)
+    }
+    e.stopPropagation
+  })
 
-  /* HASTA ACA """""ORDERNADO"""""  */
-//      Order By
+/* HASTA ACA """""ORDERNADO"""""  */
 
- function ordenarAsc() { 
-  productos.sort( (a,b) => {
-  const nameA = a.nombre.toUpperCase()
-  const nameB = b.nombre.toUpperCase()
-  if (nameA < nameB) {
-    return -1;
-  }
-  if (nameA > nameB) {
-    return 1;
-  }
-  return 0;
-})
-} 
-
-/* function ordenarDesc() { 
-  articulo.sort( (a,b) => {
-  const nameA = a.nombre.toUpperCase()
-  const nameB = b.nombre.toUpperCase()
-  if (nameA > nameB) {
-    return -1;
-  }
-  if (nameA < nameB) {
-    return 1;
-  }
-  return 0;
-}) 
-} 
-
-const menoramayor = () => {articulo.sort((a,b) => a.precio - b.precio)}
-const mayoramenor = () => {articulo.sort((a,b) => b.precio - a.precio)}
-*/
 
   
-
-
+// NO ANDA
+/* 
 navfilters.addEventListener('change',(e) => {
 
 
@@ -265,31 +321,15 @@ navfilters.addEventListener('change',(e) => {
 
  
 
-/* 
+
 const filtrarArticulos  = (productos, filter) => {
   const articulosFiltrados = productos.filter( producto => producto.categoria == filter)
   pintarCards(articulosFiltrados)
-  } */
-
-
-
-const eOrdernar = document.querySelector('.ordenes')
-eOrdernar.addEventListener('click',(e) =>{
-	if(e.target.classList.contains('ascendente')){
-	ordenarAsc()
-    pintarCards(productos)
-  }else if(e.target.classList.contains('descendete')){
-    ordenarDesc()
-    pintarCards(productos)
-  }else if(e.target.classList.contains('mayor')){
-    mayoramenor()
-    pintarCards(productos)
-  }else if(e.target.classList.contains('menor')){
-    menoramayor()
-    pintarCards(productos)
   }
-  e.stopPropagation
-})
+ */
+
+
+
 
 
 
