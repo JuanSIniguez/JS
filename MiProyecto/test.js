@@ -10,8 +10,12 @@ if(localStorage.getItem('lsCarrito')) {
 let productos = []
 if(localStorage.getItem('lsProductos')) {
   productos = JSON.parse(localStorage.getItem('lsProductos'))
- }
- 
+}
+
+let prodFiltrados = productos
+
+//        DOM
+
 const fragment = document.createDocumentFragment();
 
 const cardproductos = document.querySelector('.dinamicproduct');
@@ -27,6 +31,10 @@ const imgpath = cardtemplate.querySelector('.img-product').getAttribute('src')
 
 const eOrdernar = document.querySelector('.ordenes')
 
+
+
+
+
 //         CARGA DE PAGINA
 
 document.addEventListener('DOMContentLoaded', e => { fetchData() });
@@ -39,6 +47,7 @@ const fetchData = async () => {
     const lsProductos = localStorage.setItem("lsProductos", JSON.stringify(productos))
     pintarCards(productos)
     pintarFiltros(productos)
+    pintarMenu(productos)
     if (localStorage.getItem('lsCarrito')) {
         const carrito = JSON.parse(localStorage.getItem('lsCarrito'))
         pintarcarrito(carrito)
@@ -60,9 +69,8 @@ const fetchData = async () => {
       //const fragment = document.createDocumentFragment();
       cardproductos.innerHTML=''
       productos.forEach( (e) => { 
-      e.sku = e.categoria.substring(0,2) + e.codigo + e.familia.substring(0,1)
-      cardtemplate.querySelector(".card-body .card-text").textContent = e.descripcion;
-      cardtemplate.querySelector(".img-product").src= `${imgpath}${e.categoria.substring(0,2)}${e.codigo}${e.familia.substring(0,1)}.webp`
+      /* cardtemplate.querySelector(".card-body .card-text").textContent = e.descripcion; */
+      cardtemplate.querySelector(".img-product").src= `${imgpath}${e.sku}.webp`
       cardtemplate.querySelector('.card-footer .card-text').textContent = `${e.nombre}`
       cardtemplate.querySelector('.card-footer h6').textContent = `$ ${e.precio}   -   3 y 6 Cuotas sin interes.`
       cardtemplate.querySelector('.card-footer .card-text').setAttribute('data-value', e.sku)
@@ -90,17 +98,18 @@ const pintarcarrito = obj =>{
     templatecarrito.querySelector('.carritoArticulo').textContent = `(${producto.codigo}) ${producto.nombre}`
     templatecarrito.querySelector('.carritoCantidad').textContent = producto.cantidad
     templatecarrito.querySelector('.carritoCantidad').setAttribute('data-value', producto.cantidad)
-    templatecarrito.querySelector('.carritoPrecio').textContent = "$ " +producto.precio
+    templatecarrito.querySelector('.carritoPrecio').textContent = `$  ${(producto.precio*1).toLocaleString('es-ES')}`
+    // el * 1 es porque sino no tomaba el toLocaleString y no se porque
     templatecarrito.querySelector('.carritoPrecio').setAttribute('data-value', producto.precio)
     let ntotal = producto.cantidad*producto.precio
-    templatecarrito.querySelector('.carritoTotalArt').textContent = `$ ${(producto.cantidad*producto.precio).toLocaleString('es-ES')}`
+    templatecarrito.querySelector('.carritoTotalArt').textContent = `$  ${(producto.cantidad*producto.precio).toLocaleString('es-ES')}`
     const clone = templatecarrito.cloneNode(true);
     fragment.appendChild(clone);
     templatecarrito.querySelector('.sumar').setAttribute('data-value', producto.codigo)
   })
   const nCantidad = Object.values(obj).reduce((acc, {cantidad}) => acc + cantidad, 0)
   const nTotal   = Object.values(obj).reduce((acc, {cantidad, precio}) => acc + cantidad * precio, 0)
-  divCarrito.innerHTML = `<h5 class="h4 text-white border text-end py-0 px-2 m-0 ">Cantidad total: ${nCantidad} <br>Total de la compra: $${nTotal}</h5>`
+  divCarrito.innerHTML = `<h5 class="h4 text-white border text-end py-0 px-2 m-0 ">Cantidad total: ${nCantidad} <br>Total de la compra: $${nTotal.toLocaleString('es-ES')}</h5>`
   divCarrito.prepend(fragment)
   const lsCarrito = localStorage.setItem("lsCarrito", JSON.stringify(obj))
   
@@ -196,10 +205,9 @@ const pintarcarrito = obj =>{
   //			Lista las categorias de los productos
 	const listarCategorias = productos =>{
 		productos.forEach( (e) => {
-			if (categorias.includes(e.categoria) ){
-		  	}else{
-      			categorias.push(e.categoria)
-		   }
+			if (!categorias.includes(e.categoria) ){
+        categorias.push(e.categoria)
+		  }
 		})
 	} 
 
@@ -220,7 +228,7 @@ const pintarcarrito = obj =>{
 	
   } 
 
-  //      Order By
+  //                  Order By
 
  const ordenarAsc = arr => { 
   arr.sort( (a,b) => {
@@ -236,8 +244,8 @@ const pintarcarrito = obj =>{
 })
 } 
 
-function ordenarDesc() { 
-  productos.sort( (a,b) => {
+const ordenarDesc = arr => { 
+  arr.sort( (a,b) => {
   const nameA = a.nombre.toUpperCase()
   const nameB = b.nombre.toUpperCase()
   if (nameA > nameB) {
@@ -250,9 +258,54 @@ function ordenarDesc() {
 }) 
 } 
 
-const menoramayor = () => {productos.sort((a,b) => a.precio - b.precio)}
-const mayoramenor = () => {productos.sort((a,b) => b.precio - a.precio)}
+const menoramayor = () => {prodFiltrados.sort((a,b) => a.precio - b.precio)}
+const mayoramenor = () => {prodFiltrados.sort((a,b) => b.precio - a.precio)}
 
+//                      Filtrar Productos
+
+const filtrarArticulos = ( () => {
+
+  const categoriasexistentes = document.querySelectorAll('.checkbox')
+  
+  let contador = 0
+  
+  categoriasexistentes.forEach( (e) => {
+      let tempCategoria = (e.getAttribute('value') )
+      if(e.checked){
+
+          productos.forEach( (e) => {
+            if(e.categoria === tempCategoria){
+                  if(!prodFiltrados.find(({sku}) => sku == e.sku )  ){
+                    prodFiltrados.push(e)
+                  }
+              }
+          });
+      }else{
+
+          contador++
+          prodFiltrados = prodFiltrados.filter(function(e) {
+            if(e.categoria != tempCategoria){
+            return (e)
+          }
+          });
+          if(categoriasexistentes.length === contador){
+            prodFiltrados = productos
+          };
+      }
+  })
+})
+
+//               Buscar productos
+
+const buscarArticulo = ((buscado) => {
+  
+  prodFiltrados = productos.filter(function(e) {
+    if(e.nombre.toUpperCase().includes(buscado.value.toUpperCase())){
+      return (e)
+    }
+  })
+    
+  })
 
 
 
@@ -260,72 +313,126 @@ const mayoramenor = () => {productos.sort((a,b) => b.precio - a.precio)}
 //         EVENTOS
 //
 
-//                Revisa los productos para agregar al carrito    
+//                Escucha los productos para agregar al carrito    
   cardproductos.addEventListener('click',(e) => {
     addCarrito(e)
   })
 
-//                Revisa los botones sumar y restar
   divCarrito.addEventListener('click',(e) => {
     if(e.target.classList.contains('sumar'))
     {
      
-    sumarCarrito(e.currentTarget.parentElement.parentElement.parentElement)
+      sumarCarrito(e.currentTarget.parentElement.parentElement.parentElement)
 	e.stopPropagation
       
-  }else if(e.target.classList.contains('restar')){
-    restarCarrito(e.currentTarget.parentElement.parentElement.parentElement)
+}else if(e.target.classList.contains('restar')){
+  restarCarrito(e.currentTarget.parentElement.parentElement.parentElement)
 	e.stopPropagation
-  }
-  e.stopPropagation
-  })
+}
+e.stopPropagation
+})
+
+//                Escucha los botones sumar y restar
 
   eOrdernar.addEventListener('click',(e) =>{
     if(e.target.classList.contains('ascendente')){
-      ascendente(productos)
-      pintarCards(productos)
+      ordenarAsc(prodFiltrados)
+      pintarCards(prodFiltrados)
+      
     }else if(e.target.classList.contains('descendete')){
-      ordenarDesc(productos)
-      pintarCards(productos)
+      ordenarDesc(prodFiltrados)
+      pintarCards(prodFiltrados)
     }else if(e.target.classList.contains('mayor')){
       mayoramenor()
-      pintarCards(productos)
+      pintarCards(prodFiltrados)
     }else if(e.target.classList.contains('menor')){
       menoramayor()
-      pintarCards(productos)
+      pintarCards(prodFiltrados)
     }
     e.stopPropagation
   })
+  
+  //    Escucha los botones de Filtros
 
+  navfilters.addEventListener('change',(e) => {
+
+
+    if (e.target.checked){
+      filtrarArticulos()
+      pintarCards(prodFiltrados)
+      e.stopPropagation
+    }else{
+          filtrarArticulos()
+          e.stopPropagation
+      
+   pintarCards(prodFiltrados)
+      
+    }
+    e.stopPropagation()
+    
+    })
+
+
+    const tSearch = document.querySelector('.search')
+    tSearch.addEventListener('input', function () {
+      buscarArticulo(this)
+      pintarCards(prodFiltrados)
+      e.stopPropagation()
+    } )
 /* HASTA ACA """""ORDERNADO"""""  */
 
 
   
 
+	const pintarMenu = productos => {
 
-navfilters.addEventListener('change',(e) => {
-
-
-	if (e.target.checked){
+	  categorias.push(listarCategorias(productos))
+	  categorias.pop()
+	  categorias.forEach( e => {
+      let x = document.createElement('li')
+      x.textContent = [e]
+      x.setAttribute('value',[e])
+      x.setAttribute('class', 'dropdown-item text-style item-menu')
+	    fragment.appendChild(x);
+	});
   
-	  filtrarArticulos(articulo, e.target.getAttribute('value'))
-	  pintarCards(articulo)
-	}else{
-	  pintarCards(articulo)
-  }
-	e.stopPropagation()
-  
-  })
+	navMenu.appendChild(fragment)
 	
+  } 
+
+const navMenu = document.querySelector('.menuProductos')
+navMenu.addEventListener('click',(e) => {
+  filtrarMenu(e.target.getAttribute('value'))
+})
+
+const filtrarMenu = ((categoria) => {
+  
+    let tempCategoria = categoria
+    pintarCards(prodFiltrados.filter(function(e) {
+        if(e.categoria === tempCategoria){
+            return (e)
+          }
+      }))
+      
+    })
   
 
- 
+// Usar para optimizar
+/* const filtrarProductos = ((arr, categoria) => {
+  arr.filter(function(e) {
+    if(e.categoria === tempCategoria){
+        return (e)
+      }
+  })
+}) */
 
 
-const filtrarArticulos  = (productos, filter) => {
-  const articulosFiltrados = productos.filter( producto => producto.categoria == filter)
-  pintarCards(articulosFiltrados)
-  }
+
+  
+
+
+
+
 
 
 

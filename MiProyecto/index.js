@@ -10,7 +10,9 @@ if(localStorage.getItem('lsCarrito')) {
 let productos = []
 if(localStorage.getItem('lsProductos')) {
   productos = JSON.parse(localStorage.getItem('lsProductos'))
- }
+}
+
+let prodFiltrados = []
  
 const fragment = document.createDocumentFragment();
 
@@ -60,9 +62,8 @@ const fetchData = async () => {
       //const fragment = document.createDocumentFragment();
       cardproductos.innerHTML=''
       productos.forEach( (e) => { 
-      e.sku = e.categoria.substring(0,2) + e.codigo + e.familia.substring(0,1)
       cardtemplate.querySelector(".card-body .card-text").textContent = e.descripcion;
-      cardtemplate.querySelector(".img-product").src= `${imgpath}${e.categoria.substring(0,2)}${e.codigo}${e.familia.substring(0,1)}.webp`
+      cardtemplate.querySelector(".img-product").src= `${imgpath}${e.sku}.webp`
       cardtemplate.querySelector('.card-footer .card-text').textContent = `${e.nombre}`
       cardtemplate.querySelector('.card-footer h6').textContent = `$ ${e.precio}   -   3 y 6 Cuotas sin interes.`
       cardtemplate.querySelector('.card-footer .card-text').setAttribute('data-value', e.sku)
@@ -253,6 +254,40 @@ function ordenarDesc() {
 const menoramayor = () => {productos.sort((a,b) => a.precio - b.precio)}
 const mayoramenor = () => {productos.sort((a,b) => b.precio - a.precio)}
 
+// Filtrar Productos
+
+const filtrarArticulos = ((lista, checked) => {
+
+  const categoriasexistentes = document.querySelectorAll('.checkbox')
+  
+  let contador = 0
+  
+  categoriasexistentes.forEach( (e) => {
+      let tempCategoria = (e.getAttribute('value') )
+      if(e.checked){
+
+          productos.forEach( (e) => {
+            if(e.categoria === tempCategoria){
+                  if(!prodFiltrados.find(({sku}) => sku == e.sku )  ){
+                    prodFiltrados.push(e)
+                  }
+              }
+          });
+      }else{
+
+          contador++
+          // CORREGIR
+          prodFiltrados = prodFiltrados.filter(function(e) {
+            if(e.categoria != tempCategoria){
+            return (e)
+          }
+          });
+          if(categoriasexistentes.length === contador){
+            prodFiltrados = productos
+          };
+      }
+  })
+})
 
 
 
@@ -260,12 +295,12 @@ const mayoramenor = () => {productos.sort((a,b) => b.precio - a.precio)}
 //         EVENTOS
 //
 
-//                Revisa los productos para agregar al carrito    
+//                Escucha los productos para agregar al carrito    
   cardproductos.addEventListener('click',(e) => {
     addCarrito(e)
   })
 
-//                Revisa los botones sumar y restar
+//                Escucha los botones sumar y restar
   divCarrito.addEventListener('click',(e) => {
     if(e.target.classList.contains('sumar'))
     {
@@ -280,53 +315,55 @@ const mayoramenor = () => {productos.sort((a,b) => b.precio - a.precio)}
   e.stopPropagation
   })
 
+  //    Escucha los botones de Filtros
   eOrdernar.addEventListener('click',(e) =>{
     if(e.target.classList.contains('ascendente')){
-      ascendente(productos)
-      pintarCards(productos)
+      ordenarAsc(prodFiltrados)
+      pintarCards(prodFiltrados)
     }else if(e.target.classList.contains('descendete')){
-      ordenarDesc(productos)
-      pintarCards(productos)
+      ordenarDesc(prodFiltrados)
+      pintarCards(prodFiltrados)
     }else if(e.target.classList.contains('mayor')){
       mayoramenor()
-      pintarCards(productos)
+      pintarCards(prodFiltrados)
     }else if(e.target.classList.contains('menor')){
       menoramayor()
-      pintarCards(productos)
+      pintarCards(prodFiltrados)
     }
     e.stopPropagation
   })
+
+  navfilters.addEventListener('change',(e) => {
+
+
+    if (e.target.checked){
+      filtrarArticulos(e.currentTarget,  e.target.checked)
+      /* filtrarArticulos(e.target.getAttribute('value'), e.target.checked) */
+      pintarCards(prodFiltrados)
+    }else{
+          filtrarArticulos(e.currentTarget,  e.target.checked)
+          /* filtrarArticulos(e.target.getAttribute('value'), e.target.checked) */
+   pintarCards(prodFiltrados)
+      /* pintarCards(articulo) */
+    }
+    e.stopPropagation()
+    
+    })
 
 /* HASTA ACA """""ORDERNADO"""""  */
 
 
   
-// NO ANDA
-/* 
-navfilters.addEventListener('change',(e) => {
 
 
-	if (e.target.checked){
-  
-	  filtrarArticulos(articulo, e.target.getAttribute('value'))
-	  pintarCards(articulo)
-	}else{
-	  pintarCards(articulo)
-  }
-	e.stopPropagation()
-  
-  })
+
 	
   
 
- 
 
 
-const filtrarArticulos  = (productos, filter) => {
-  const articulosFiltrados = productos.filter( producto => producto.categoria == filter)
-  pintarCards(articulosFiltrados)
-  }
- */
+
+
 
 
 

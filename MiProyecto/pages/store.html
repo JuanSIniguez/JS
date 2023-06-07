@@ -70,15 +70,9 @@
 								Productos
 							</button>
 							<ul
-								class="dropdown-menu bg-secondary"
+								class="dropdown-menu bg-secondary menuProductos"
 								aria-labelledby="btnGroupDrop1"
-							>
-								<li>
-									<a class="dropdown-item text-style" href="#"
-										>"Categorias(DOM)"</a
-									>
-								</li>
-							</ul>
+							></ul>
 						</div>
 						<li class="nav-item">
 							<a class="nav-link" href="#">Tienda</a>
@@ -91,7 +85,7 @@
 				<form class="d-flex">
 					<div class="input-group">
 						<input
-							class="form-control"
+							class="form-control search"
 							type="search"
 							placeholder="Search"
 							aria-label="Search"
@@ -256,13 +250,13 @@
 		<!-- TEMPLATE PRODUCTOS -->
 		<template class="cardtemplate">
 			<div class="flip-card col-lg-3 col-md-6 col-sm-12 px-4 py-3">
-				<div class="card flip-card-inner border-style">
+				<div class="card border-style">
 					<img
-						class="card-img-top img-size flip-card-front img-product"
+						class="card-img-top img-size img-product"
 						src="../img/Productos/"
 						alt="tagalt"
 					/>
-					<div
+					<!-- <div
 						class="card-body flip-card-back overflow-hidden bg-secondary"
 					>
 						<p
@@ -270,7 +264,7 @@
 						>
 							Caracteristicas
 						</p>
-					</div>
+					</div> -->
 				</div>
 				<div class="card-footer text-white p-2 text-start">
 					<hr />
@@ -291,11 +285,55 @@
 						</button>
 						<button
 							id="ver"
-							type="button"
 							class="btn btn-secondary border-success text-success"
+							type="button"
+							data-bs-toggle="offcanvas"
+							data-bs-target="#offcanvasTop"
+							aria-controls="offcanvasTop"
 						>
 							<i class="bi bi-eye">VER</i>
 						</button>
+
+						<div
+							class="offcanvas bg-transparent mx-0 px-0 row vh-100"
+							tabindex="-1"
+							id="offcanvasTop"
+							aria-labelledby="offcanvasTopLabel"
+							
+						>
+						
+						 								<button
+															type="button"
+															class="btn-close"
+															data-bs-dismiss="offcanvas"
+															aria-label="Close"
+														></button>
+						 							
+								<h5 class="offcanvas-title" id="offcanvasTopLabel">
+									Producto
+								</h5>
+								<div class="offcanvas-body border-style">
+										BODY
+								<div class="card border-style col-lg-6 col-md-6 col-sm-12">
+									<img
+									class="card-img-top img-product "
+									src="../img/Productos/SK0004U.webp"
+									alt="tagalt"
+								/>
+
+								</div>
+								<div class="card-footer text-white p-2 text-start col-lg-6 col-md-6 col-sm-12">
+									<h6>Nombre</h6>
+									<hr />
+									<div class="card-text text-wrap h6">
+									</div>
+				
+
+									<h6 class="fw-normal fst-italic text-start col-auto precio py-2">
+										3 y 6 Cuotas sin interes.
+									</h6>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -306,7 +344,7 @@
 		<template class="templateFilters">
 			<ul class="categoria">
 				<input
-					class="form-check-input"
+					class="form-check-input checkbox"
 					type="checkbox"
 					value=""
 					id="flexCheckDefault"
@@ -335,14 +373,10 @@
 						type="button"
 						class="btn btn-secondary-grey text-success"
 					>
-						<!-- <i class="bi bi-plus-lg"></i> -->
-						<!-- <i class="bi bi-plus-circle-fill"></i> -->
 						<i class="bi bi-plus-circle fs-5 sumar"></i>
 					</button>
 					<button type="button" class="btn btn-secondary-grey text-danger">
-						<!-- <i class="bi bi-dash"></i> -->
 						<i class="bi bi-dash-circle fs-5 restar"></i>
-						<!-- <i class="bi bi-dash-circle-fill"></i> -->
 					</button>
 				</div>
 				<div
